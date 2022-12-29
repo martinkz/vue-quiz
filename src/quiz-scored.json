@@ -1,0 +1,38 @@
+{
+  "type": "scored",
+  "timed": false,
+  "data": [
+    {
+      "question": "Would you rather… 1",
+      "answers": [
+        {"answer": "STAY AT HOME AND WATCH A NEW NETFLIX SERIES THAT YOU’VE WANTED TO BINGE FOR AGES", "result": "1"},
+        {"answer": "GET YOUR DANCING SHOES ON, YOU’RE OFF TO A GIG WITH YOUR MATES", "result": "2"}
+      ],
+      "image": ""
+    },
+    {
+      "question": "Would you rather… 2",
+      "answers": [
+        {"answer": "ROAD TRIP TO A FESTIVAL WITH LOADS OF FRIENDS, READY FOR A WILD WEEKEND WITH NON-STOP MUSIC", "result": "3"},
+        {"answer": "AN EVENING AT AN INTIMATE ACOUSTIC GIG WITH DINNER AND SOPHISTICATED DRINKS AFTERWARDS", "result": "4"}
+      ],
+      "image": ""
+    },
+    {
+      "question": "Would you rather… 3",
+      "answers": [
+        {"answer": "SUN-BATHE AROUND THE POOL, COCKTAIL IN HAND, HAVE A BOOK ON THE GO AND PLENTY OF SNACKS AT HAND", "result": "2"},
+        {"answer": "BE UP EARLY ON YOUR HOLIDAY, OUT TO SEE THE SITES AND MAYBE A BIT OF WATER SPORTS IN THE AFTERNOON? QUICK CHANGE AND OFF TO THE LOCAL BARS!", "result": "3"}
+      ],
+      "image": ""
+    },
+    {
+      "question": "Would you rather… 4",
+      "answers": [
+        {"answer": "BE THE LIFE AND SOUL OF THE PARTY", "result": "2"},
+        {"answer": "BE CALM, COLLECTED AND ALWAYS RELIABLE", "result": "3"}
+      ],
+      "image": ""
+    }
+  ]
+}
