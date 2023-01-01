@@ -3,10 +3,10 @@
 		<Transition name="slide-up">
 			<QuizQuestion 
 			v-if="!quizState.showResult"
-			:questionItem="quizData.data[quizState.currentQuestion]" 
 			:key="quizData.data[quizState.currentQuestion]"
+			:question-item="quizData.data[quizState.currentQuestion]"
 			class="quiz-slide"  />
-			<QuizResult v-else class="quiz-slide" :resultItem="getResultItem()" />
+			<QuizResult v-else class="quiz-slide" :result-item="getResultItem()" />
 		</Transition>
 	</div>
 </template>
