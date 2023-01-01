@@ -5,21 +5,16 @@
 	</div>
 </template>
 
-<script>
-	import QuizQuestionAnswerBtn from '@/components/QuizQuestionAnswerBtn.vue';
+<script setup>
 
-	export default {
-		components: {
-			QuizQuestionAnswerBtn,
-		},
+import QuizQuestionAnswerBtn from '@/components/QuizQuestionAnswerBtn.vue';
 
-		props: {
-			questionItem: {
-				type: Object,
-				required: true,
-			}
-		},
+defineProps({
+	questionItem: {
+		type: Object,
+		required: true,
 	}
+})
 </script>
 
 <style scoped>

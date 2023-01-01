@@ -2,19 +2,15 @@
   <button class="quiz-answer-btn" @click="answerBtnClick(item.result)" type="button">{{ item.answer }}</button>
 </template>
 
-<script>
-
-	export default {
-		props: {
-			item : {
-				type: Object,
-				required: true,
-			}
-		},
-
-		inject: ['answerBtnClick'],
+<script setup>
+import { inject } from 'vue'
+defineProps({
+	item : {
+		type: Object,
+		required: true,
 	}
-
+})
+const answerBtnClick = inject('answerBtnClick')
 </script>
 
 <style scoped>

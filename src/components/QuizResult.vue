@@ -10,25 +10,15 @@
   </div>
 </template>
 
-<script>
-  // import QuizQuestionAnswerBtn from '@/components/QuizQuestionAnswerBtn.vue';
+<script setup>
 
-  export default {
-    components: {
-      
-    },
-
-    props: {
-      resultItem: {
-        type: Object,
-        required: true,
-      }
-    },
-
-    methods: {
-
-    }
+defineProps({
+  resultItem: {
+    type: Object,
+    required: true,
   }
+})
+
 </script>
 
 <style scoped>
