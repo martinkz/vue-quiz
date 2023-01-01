@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { reactive, onBeforeMount, provide  } from "vue"
+import { reactive, provide  } from "vue"
 import QuizQuestion from '@/components/QuizQuestion.vue';
 import QuizResult from '@/components/QuizResult.vue';
 import data from '@/quiz-personality.json'
@@ -25,6 +25,14 @@ const quizState = reactive({
 	score: undefined,
 	personalityScores: [],
 })
+
+if(quizData.type === 'personality') {
+	quizState.personalityScores.length = quizData.data.length
+	quizState.personalityScores.fill(0);
+} 
+else if (quizData.type === 'scored') {
+	quizState.score = 0
+}
 
 const calculateIntermediateResult = newVal => {
 	if(quizData.type === 'personality') {
@@ -64,16 +72,6 @@ const getResultItem = () => {
 		result: result
 	}
 }
-
-onBeforeMount( () => {
-	if(quizData.type === 'personality') {
-		quizState.personalityScores.length = quizData.data.length
-		quizState.personalityScores.fill(0);
-	} 
-	else if (quizData.type === 'scored') {
-		quizState.score = 0
-	}
-})
 
 const onAnswerBtnClick = val => {
 	calculateIntermediateResult(val)
