@@ -22,6 +22,8 @@ export const useQuizStore = defineStore("quizStore", {
 		score: 0,
 		personalityScores: [],
 		loading: true,
+		waiting: false,
+		answerIsCorrect: undefined,
 	}),
 
 	getters: {
@@ -31,7 +33,7 @@ export const useQuizStore = defineStore("quizStore", {
 
 	actions: {
 		async init() {
-			this.quizData = (await import("@/quiz-personality.json")).default;
+			this.quizData = (await import("@/quiz-scored.json")).default;
 
 			if (this.quizData.type === "personality") {
 				this.personalityScores.length = this.quizData.data.length;
@@ -41,17 +43,29 @@ export const useQuizStore = defineStore("quizStore", {
 			this.loading = false;
 		},
 
-		nextStep(newVal) {
-			if (this.quizData.type === "personality") {
-				this.personalityScores[newVal]++;
-			} else if (this.quizData.type === "scored") {
-				this.score += parseFloat(newVal);
-			}
-
+		nextStep() {
 			if (this.currentQuestion < this.numSlides - 1) {
 				this.currentQuestion++;
 			} else {
 				this.showResult = true;
+			}
+		},
+
+		processUserAnswer(newVal) {
+			if (this.quizData.type === "personality") {
+				this.personalityScores[newVal]++;
+				this.nextStep();
+			} else if (this.quizData.type === "scored") {
+				if (!this.waiting) {
+					this.waiting = true;
+					this.answerIsCorrect = !!parseInt(newVal);
+					setTimeout(() => {
+						this.score += parseInt(newVal);
+						this.waiting = false;
+						this.answerIsCorrect = undefined;
+						this.nextStep();
+					}, 1500);
+				}
 			}
 		},
 
