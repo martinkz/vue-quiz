@@ -19,7 +19,7 @@ export const useQuizStore = defineStore("quizStore", {
 		quizData: [],
 		currentQuestion: 0,
 		showResult: false,
-		score: undefined,
+		score: 0,
 		personalityScores: [],
 		loading: true,
 	}),
@@ -36,8 +36,6 @@ export const useQuizStore = defineStore("quizStore", {
 			if (this.quizData.type === "personality") {
 				this.personalityScores.length = this.quizData.data.length;
 				this.personalityScores.fill(0);
-			} else if (this.quizData.type === "scored") {
-				this.score = 0;
 			}
 
 			this.loading = false;
@@ -70,6 +68,13 @@ export const useQuizStore = defineStore("quizStore", {
 				type: this.quizData.type,
 				result: result,
 			};
+		},
+
+		reset() {
+			this.currentQuestion = 0;
+			this.showResult = false;
+			this.score = 0;
+			this.personalityScores.fill(0);
 		},
 	},
 });
