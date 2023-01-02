@@ -5,32 +5,32 @@
 		{
 			"question": "Would you rather… 1",
 			"answers": [
-				{"answer": "STAY AT HOME AND WATCH A NEW NETFLIX SERIES THAT YOU’VE WANTED TO BINGE FOR AGES", "result": "0"},
-				{"answer": "GET YOUR DANCING SHOES ON, YOU’RE OFF TO A GIG WITH YOUR MATES", "result": "1"}
+				{ "answer": "STAY AT HOME AND WATCH A NEW NETFLIX SERIES THAT YOU’VE WANTED TO BINGE FOR AGES", "result": "0" },
+				{ "answer": "GET YOUR DANCING SHOES ON, YOU’RE OFF TO A GIG WITH YOUR MATES", "result": "1" }
 			],
 			"image": ""
 		},
 		{
 			"question": "Would you rather… 2",
 			"answers": [
-				{"answer": "ROAD TRIP TO A FESTIVAL WITH LOADS OF FRIENDS, READY FOR A WILD WEEKEND WITH NON-STOP MUSIC", "result": "0"},
-				{"answer": "AN EVENING AT AN INTIMATE ACOUSTIC GIG WITH DINNER AND SOPHISTICATED DRINKS AFTERWARDS", "result": "1"}
+				{ "answer": "ROAD TRIP TO A FESTIVAL WITH LOADS OF FRIENDS, READY FOR A WILD WEEKEND WITH NON-STOP MUSIC", "result": "0" },
+				{ "answer": "AN EVENING AT AN INTIMATE ACOUSTIC GIG WITH DINNER AND SOPHISTICATED DRINKS AFTERWARDS", "result": "1" }
 			],
 			"image": ""
 		},
 		{
 			"question": "Would you rather… 3",
 			"answers": [
-				{"answer": "SUN-BATHE AROUND THE POOL, COCKTAIL IN HAND, HAVE A BOOK ON THE GO AND PLENTY OF SNACKS AT HAND", "result": "2"},
-				{"answer": "BE UP EARLY ON YOUR HOLIDAY, OUT TO SEE THE SITES AND MAYBE A BIT OF WATER SPORTS IN THE AFTERNOON? QUICK CHANGE AND OFF TO THE LOCAL BARS!", "result": "3"}
+				{ "answer": "SUN-BATHE AROUND THE POOL, COCKTAIL IN HAND, HAVE A BOOK ON THE GO AND PLENTY OF SNACKS AT HAND", "result": "2" },
+				{ "answer": "BE UP EARLY ON YOUR HOLIDAY, OUT TO SEE THE SITES AND MAYBE A BIT OF WATER SPORTS IN THE AFTERNOON? QUICK CHANGE AND OFF TO THE LOCAL BARS!", "result": "3" }
 			],
 			"image": ""
 		},
 		{
 			"question": "Would you rather… 4",
 			"answers": [
-				{"answer": "BE THE LIFE AND SOUL OF THE PARTY", "result": "2"},
-				{"answer": "BE CALM, COLLECTED AND ALWAYS RELIABLE", "result": "3"}
+				{ "answer": "BE THE LIFE AND SOUL OF THE PARTY", "result": "2" },
+				{ "answer": "BE CALM, COLLECTED AND ALWAYS RELIABLE", "result": "3" }
 			],
 			"image": ""
 		}
@@ -56,6 +56,5 @@
 			"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae facilisis risus, quis pulvinar magna. Phasellus consequat turpis in leo volutpat convallis. Nulla diam dui, faucibus vel cursus sed, rutrum a libero. Mauris blandit euismod lacus, eget commodo lorem interdum a. Sed fermentum vulputate dignissim. Duis tempor pulvinar lectus a tristique. Mauris finibus dapibus ipsum vel ullamcorper. Sed a elit ligula. Suspendisse fermentum dui arcu, at elementum purus lacinia vitae. Integer fermentum porttitor aliquet. Mauris a mi odio. Aenean euismod vestibulum luctus.",
 			"image": ""
 		}
-		
 	]
 }

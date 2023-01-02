@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1>{{ questionItem.question }}</h1>
-		<QuizQuestionAnswerBtn v-for="item in questionItem.answers" :item="item" />
+		<QuizQuestionAnswerBtn v-for="item in questionItem.answers" :key="item" :item="item" />
 	</div>
 </template>
 

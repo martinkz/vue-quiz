@@ -1,90 +1,24 @@
 <template>
-	<div class="quiz-slide-wrap">
+	<div v-if="!store.loading" class="quiz-slide-wrap">
 		<Transition name="slide-up">
 			<QuizQuestion 
-			v-if="!quizState.showResult"
-			:key="quizData.data[quizState.currentQuestion]"
-			:question-item="quizData.data[quizState.currentQuestion]"
-			class="quiz-slide"  />
-			<QuizResult v-else class="quiz-slide" :result-item="getResultItem()" />
+			v-if="!store.showResult"
+			:key="store.currentQuestionData"
+			:question-item="store.currentQuestionData"
+			class="quiz-slide" />
+			<QuizResult v-else class="quiz-slide" :result-item="store.getResultItem()" />
 		</Transition>
 	</div>
 </template>
 
 <script setup>
-import { reactive, provide  } from "vue"
-import QuizQuestion from '@/components/QuizQuestion.vue';
-import QuizResult from '@/components/QuizResult.vue';
-import data from '@/quiz-personality.json'
+// import { reactive } from "vue"
+import QuizQuestion from '@/components/QuizQuestion.vue'
+import QuizResult from '@/components/QuizResult.vue'
+import { useQuizStore } from '@/stores/QuizStore'
 
-const quizData = reactive(data)
-const numSlides = quizData.data.length
-const quizState = reactive({
-	currentQuestion: 0,
-	showResult: false,
-	score: undefined,
-	personalityScores: [],
-})
-
-if(quizData.type === 'personality') {
-	quizState.personalityScores.length = quizData.data.length
-	quizState.personalityScores.fill(0);
-} 
-else if (quizData.type === 'scored') {
-	quizState.score = 0
-}
-
-const calculateIntermediateResult = newVal => {
-	if(quizData.type === 'personality') {
-		quizState.personalityScores[newVal]++ 
-	}
-	else if (quizData.type === 'scored') {
-		quizState.score += parseFloat(newVal)
-	}
-}
-
-const calculatePersonalityIdx = scores => {
-	const max = Math.max(...scores)
-	const indexes = []
-
-	for (let i = 0; i < scores.length; i++) {
-		if (scores[i] === max) {
-			indexes.push(i)
-		}
-	}
-	// Get a random one of the indexes that have the max value
-	const randomIdx = Math.floor(Math.random() * indexes.length)
-	return indexes[randomIdx]
-}
-
-const getResultItem = () => {
-	let result;
-
-	if(quizData.type === 'personality') {
-		const resultIdx = calculatePersonalityIdx(quizState.personalityScores)
-		result = quizData.results[resultIdx]
-	}
-	else if(quizData.type === 'scored') {
-		result = quizState.score
-	}
-	return {
-		type: quizData.type,
-		result: result
-	}
-}
-
-const onAnswerBtnClick = val => {
-	calculateIntermediateResult(val)
-
-	if(quizState.currentQuestion < numSlides - 1) {
-		quizState.currentQuestion++
-	} else {
-		quizState.showResult = true
-	}
-}
-
-provide('answerBtnClick', onAnswerBtnClick)
-
+const store = useQuizStore()
+store.init()
 </script>
 
 

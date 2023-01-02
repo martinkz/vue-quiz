@@ -1,16 +1,18 @@
 <template>
-  <button class="quiz-answer-btn" @click="answerBtnClick(item.result)" type="button">{{ item.answer }}</button>
+  <button class="quiz-answer-btn" type="button" @click="store.nextStep(item.result)">{{ item.answer }}</button>
 </template>
 
 <script setup>
-import { inject } from 'vue'
+import { useQuizStore } from '@/stores/QuizStore';
+
+const store = useQuizStore();
+
 defineProps({
 	item : {
 		type: Object,
 		required: true,
 	}
 })
-const answerBtnClick = inject('answerBtnClick')
 </script>
 
 <style scoped>
