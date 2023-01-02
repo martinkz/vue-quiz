@@ -1,6 +1,7 @@
 <template>
   <div>
     <div v-if="resultItem.type === 'personality'">
+      <div><img class="result-img" :src="resultItem.result.image" alt=""></div>
       <h1>{{ resultItem.result.title }}</h1>
     </div>
     <div v-else-if="resultItem.type === 'scored'">
@@ -30,5 +31,7 @@ defineProps({
 </script>
 
 <style scoped>
-
+.result-img {
+  margin: 0 auto;
+}
 </style>
