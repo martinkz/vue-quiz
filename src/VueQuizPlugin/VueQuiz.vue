@@ -13,8 +13,8 @@
 
 <script setup>
 // import { reactive } from "vue"
-import QuizQuestion from '@/components/QuizQuestion.vue'
-import QuizResult from '@/components/QuizResult.vue'
+import QuizQuestion from '@/VueQuizPlugin/QuizQuestion.vue'
+import QuizResult from '@/VueQuizPlugin/QuizResult.vue'
 import { useQuizStore } from '@/stores/QuizStore'
 
 const store = useQuizStore()

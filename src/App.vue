@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import VueQuiz from '@/components/VueQuiz.vue'
+import VueQuiz from '@/VueQuizPlugin/VueQuiz.vue'
 </script>

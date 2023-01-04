@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import QuizQuestionAnswerBtn from '@/components/QuizQuestionAnswerBtn.vue';
+import QuizQuestionAnswerBtn from '@/VueQuizPlugin/QuizQuestionAnswerBtn.vue';
 import { useQuizStore } from '@/stores/QuizStore';
 
 const store = useQuizStore();
