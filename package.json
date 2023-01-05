@@ -1,6 +1,21 @@
 {
 	"name": "vue-quiz",
-	"version": "0.0.0",
+	"version": "0.0.1",
+	"description": "Vue 3 Quiz Plugin",
+	"homepage": "https://github.com/martinkz/vue-quiz",
+	"license": "MIT",
+	"files": [
+		"dist"
+	],
+	"main": "./dist/vue-quiz.umd.cjs",
+	"module": "./dist/vue-quiz.mjs",
+	"exports": {
+		".": {
+			"import": "./dist/vue-quiz.mjs",
+			"require": "./dist/vue-quiz.umd.cjs"
+		},
+		"./style.css": "./dist/style.css"
+	},
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",

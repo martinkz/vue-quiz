@@ -10,8 +10,8 @@
 </template>
 
 <script setup>
-import QuizQuestionAnswerBtn from '@/VueQuizPlugin/QuizQuestionAnswerBtn.vue';
-import { useQuizStore } from '@/stores/QuizStore';
+import QuizQuestionAnswerBtn from '@/VueQuizPlugin/components/QuizQuestionAnswerBtn.vue';
+import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
 
 const store = useQuizStore();
 

@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import { useQuizStore } from '@/stores/QuizStore';
+import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
 
 const store = useQuizStore();
 
