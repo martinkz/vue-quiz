@@ -16,9 +16,21 @@
 import QuizQuestion from '@/VueQuizPlugin/components/QuizQuestion.vue'
 import QuizResult from '@/VueQuizPlugin/components/QuizResult.vue'
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore'
+import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore'
 
 const store = useQuizStore()
 store.init()
+
+const props = defineProps({
+  options: {
+    type: Object,
+    required: false,
+    default: () => ({})
+  }
+})
+
+const options = useOptionsStore()
+options.update(props.options)
 </script>
 
 
