@@ -6,7 +6,9 @@
 			"question": "Would you rather… 1",
 			"answers": [
 				{ "answer": "STAY AT HOME AND WATCH A NEW NETFLIX SERIES THAT YOU’VE WANTED TO BINGE FOR AGES", "result": "1" },
-				{ "answer": "GET YOUR DANCING SHOES ON, YOU’RE OFF TO A GIG WITH YOUR MATES", "result": "0" }
+				{ "answer": "GET YOUR DANCING SHOES ON, YOU’RE OFF TO A GIG WITH YOUR MATES", "result": "0" },
+				{ "answer": "BE THE LIFE AND SOUL OF THE PARTY", "result": "0" },
+				{ "answer": "BE CALM, COLLECTED AND ALWAYS RELIABLE", "result": "0" }
 			],
 			"image": "https://picsum.photos/900/600"
 		},

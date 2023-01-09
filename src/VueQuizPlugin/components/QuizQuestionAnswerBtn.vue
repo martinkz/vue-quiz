@@ -10,29 +10,16 @@
 	<label 
 		:for="`answer-${store.currentQuestion}-${index}`"
 		class="quiz-answer-btn"
-		:class="btnClass">
+		:class="correctClass + incorrectClass">
 		{{ item.answer }}
 	</label>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
-
-const store = useQuizStore();
-let btnClass = ref('')
-
-const chooseAnswer = (result) => {
-	store.processUserAnswer(result);
-
-	if(store.isScored) {
-		if (result === '1') btnClass.value = 'correct';
-		else if (result === '0') btnClass.value = 'incorrect';
-	}
-}
-
-defineProps({
-	item : {
+const props = defineProps({
+	item: {
 		type: Object,
 		required: true,
 	},
@@ -41,6 +28,25 @@ defineProps({
 		required: true,
 	}
 })
+
+const store = useQuizStore();
+let incorrectClass = ref('');
+
+// Always show the correct answer
+let correctClass = computed( () => {
+	return store.waiting && store.isScored && props.item.result === '1' ? 'correct' : ''
+});
+
+const chooseAnswer = (result) => {
+	store.processUserAnswer(result);
+
+	// Highlight the incorrect answer only on the clicked button
+	if (store.isScored && result === '0') {
+		incorrectClass.value = 'incorrect';
+	}
+}
+
+
 </script>
 
 <style scoped>
@@ -69,11 +75,11 @@ input[type="radio"]:not(:disabled) + .quiz-answer-btn:hover {
 input[type="radio"]:checked + label {
 	background: rgb(47, 90, 230);
 }
-input[type="radio"]:checked + .correct {
+input[type="radio"] + label.correct {
 	background: green;
 }
 
-input[type="radio"]:checked + .incorrect {
+input[type="radio"] + label.incorrect {
 	background: red;
 }
 </style>
