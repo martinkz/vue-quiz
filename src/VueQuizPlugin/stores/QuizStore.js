@@ -24,9 +24,6 @@ export const useQuizStore = defineStore("quizStore", {
 		personalityScores: [],
 		loading: true,
 		waiting: false,
-		answerBtnClicked: false,
-		answerIsCorrect: undefined,
-		answeredBtnHighlight: false,
 	}),
 
 	getters: {
@@ -50,9 +47,6 @@ export const useQuizStore = defineStore("quizStore", {
 
 		nextStep() {
 			this.waiting = false;
-			this.answerIsCorrect = undefined;
-			this.answeredBtnHighlight = false;
-			this.answerBtnClicked = false;
 			if (this.currentQuestion < this.numSlides - 1) {
 				this.currentQuestion++;
 			} else {
@@ -60,29 +54,24 @@ export const useQuizStore = defineStore("quizStore", {
 			}
 		},
 
-		setWaiting() {
-			this.waiting = true;
-		},
-
 		processUserAnswer(newVal) {
 			if (!this.waiting) {
 				const options = useOptionsStore();
-				// this.waiting = true;
+				this.waiting = true;
+
 				if (this.isScored) {
-					this.answerIsCorrect = !!parseInt(newVal);
 					this.score += parseInt(newVal);
 				} else if (this.isPersonality) {
-					this.answeredBtnHighlight = true;
 					this.personalityScores[newVal]++;
 				}
-				setTimeout(() => {
-					if (this.isScored && !options.nextButton) {
-						this.answerIsCorrect = undefined;
-					}
-					if(!options.nextButton) {
+
+				if (!options.nextButton) {
+					if (this.isScored) {
+						setTimeout(() => this.nextStep(), 1000);
+					} else {
 						this.nextStep();
 					}
-				}, 700);
+				}
 			}
 		},
 
