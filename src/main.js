@@ -6,6 +6,7 @@ const app = createApp(App);
 
 app.use(VueQuizPlugin, {
 	comment: "This is the VueQuiz plugin project",
-	nextButton: true,
+	nextButton: false,
+	revealAnswer: true,
 });
 app.mount("#app");

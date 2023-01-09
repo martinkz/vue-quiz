@@ -22,6 +22,7 @@ export const useQuizStore = defineStore("quizStore", {
 		showResult: false,
 		score: 0,
 		personalityScores: [],
+		tempScore: undefined,
 		loading: true,
 		waiting: false,
 	}),
@@ -35,7 +36,7 @@ export const useQuizStore = defineStore("quizStore", {
 
 	actions: {
 		async init() {
-			this.quizData = (await import("@/quiz2.json")).default;
+			this.quizData = (await import("@/quiz1.json")).default;
 
 			if (this.quizData.type === "personality") {
 				this.personalityScores.length = this.quizData.data.length;
@@ -46,6 +47,7 @@ export const useQuizStore = defineStore("quizStore", {
 		},
 
 		nextStep() {
+			this.updateScore(this.tempScore);
 			this.waiting = false;
 			if (this.currentQuestion < this.numSlides - 1) {
 				this.currentQuestion++;
@@ -55,23 +57,26 @@ export const useQuizStore = defineStore("quizStore", {
 		},
 
 		processUserAnswer(newVal) {
+			this.tempScore = newVal;
 			if (!this.waiting) {
 				const options = useOptionsStore();
 				this.waiting = true;
 
-				if (this.isScored) {
-					this.score += parseInt(newVal);
-				} else if (this.isPersonality) {
-					this.personalityScores[newVal]++;
-				}
-
 				if (!options.nextButton) {
-					if (this.isScored) {
+					if (this.isScored && options.revealAnswer) {
 						setTimeout(() => this.nextStep(), 1000);
 					} else {
 						this.nextStep();
 					}
 				}
+			}
+		},
+
+		updateScore(newResult) {
+			if (this.isScored) {
+				this.score += parseInt(newResult);
+			} else if (this.isPersonality) {
+				this.personalityScores[newResult]++;
 			}
 		},
 

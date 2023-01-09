@@ -4,7 +4,7 @@ export const useOptionsStore = defineStore("optionsStore", {
 	state: () => ({
 		comment: "Initial State",
 		nextButton: true,
-		revealAnswer: false,
+		revealAnswer: true,
 	}),
 
 	actions: {
