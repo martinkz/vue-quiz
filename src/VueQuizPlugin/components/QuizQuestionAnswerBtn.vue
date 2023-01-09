@@ -1,21 +1,31 @@
 <template>
   <button 
 		class="quiz-answer-btn"
-		:class="determineAnswerBtnClass(item.result)"
+		:class="btnClass"
 		type="button"
-		@click="store.processUserAnswer(item.result)">
+		@click="determineAnswerBtnClass(item.result)">
 		{{ item.answer }}
 	</button>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
 
 const store = useQuizStore();
 
+let btnClass = ref('')
+
 const determineAnswerBtnClass = (result) => {
-	if(store.answerIsCorrect === true && result === '1') return 'correct'
-	if(store.answerIsCorrect === false && result === '0') return'incorrect'
+	store.processUserAnswer(result);
+	
+	if(!store.waiting) {
+		if (store.answeredBtnHighlight) btnClass.value = 'highlight';
+		if (store.answerIsCorrect === true) btnClass.value = 'correct';
+		if (store.answerIsCorrect === false) btnClass.value = 'incorrect';
+	}
+	
+	store.setWaiting();
 }
 
 defineProps({
@@ -36,5 +46,8 @@ defineProps({
 }
 .incorrect {
 	background: red;
+}
+.highlight {
+	background: rgb(47, 90, 230);
 }
 </style>

@@ -1,4 +1,5 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
+import { useOptionsStore } from "@/VueQuizPlugin/stores/OptionsStore";
 
 const getMaxPersonalityIdx = (scores) => {
 	const max = Math.max(...scores);
@@ -23,17 +24,21 @@ export const useQuizStore = defineStore("quizStore", {
 		personalityScores: [],
 		loading: true,
 		waiting: false,
+		answerBtnClicked: false,
 		answerIsCorrect: undefined,
+		answeredBtnHighlight: false,
 	}),
 
 	getters: {
 		numSlides: (state) => state.quizData.data.length,
 		currentQuestionData: (state) => state.quizData.data[state.currentQuestion],
+		isPersonality: (state) => state.quizData.type === "personality",
+		isScored: (state) => state.quizData.type === "scored",
 	},
 
 	actions: {
 		async init() {
-			this.quizData = (await import("@/quiz-scored.json")).default;
+			this.quizData = (await import("@/quiz2.json")).default;
 
 			if (this.quizData.type === "personality") {
 				this.personalityScores.length = this.quizData.data.length;
@@ -44,6 +49,10 @@ export const useQuizStore = defineStore("quizStore", {
 		},
 
 		nextStep() {
+			this.waiting = false;
+			this.answerIsCorrect = undefined;
+			this.answeredBtnHighlight = false;
+			this.answerBtnClicked = false;
 			if (this.currentQuestion < this.numSlides - 1) {
 				this.currentQuestion++;
 			} else {
@@ -51,21 +60,29 @@ export const useQuizStore = defineStore("quizStore", {
 			}
 		},
 
+		setWaiting() {
+			this.waiting = true;
+		},
+
 		processUserAnswer(newVal) {
-			if (this.quizData.type === "personality") {
-				this.personalityScores[newVal]++;
-				this.nextStep();
-			} else if (this.quizData.type === "scored") {
-				if (!this.waiting) {
-					this.waiting = true;
+			if (!this.waiting) {
+				const options = useOptionsStore();
+				// this.waiting = true;
+				if (this.isScored) {
 					this.answerIsCorrect = !!parseInt(newVal);
-					setTimeout(() => {
-						this.score += parseInt(newVal);
-						this.waiting = false;
-						this.answerIsCorrect = undefined;
-						this.nextStep();
-					}, 1500);
+					this.score += parseInt(newVal);
+				} else if (this.isPersonality) {
+					this.answeredBtnHighlight = true;
+					this.personalityScores[newVal]++;
 				}
+				setTimeout(() => {
+					if (this.isScored && !options.nextButton) {
+						this.answerIsCorrect = undefined;
+					}
+					if(!options.nextButton) {
+						this.nextStep();
+					}
+				}, 700);
 			}
 		},
 

@@ -4,7 +4,7 @@
 		<div><img class="question-img" :src="questionItem.image" alt=""></div>
 		<QuizQuestionAnswerBtn v-for="item in questionItem.answers" :key="item" :item="item" />
 		<div class="controls">
-			<button v-if="options.nextButton" type="button" @click="store.reset()">Next</button>
+			<button v-if="options.nextButton && store.waiting" type="button" @click="store.nextStep()">Next</button>
 		</div>
 	</div>
 </template>
