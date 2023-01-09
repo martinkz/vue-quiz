@@ -4,7 +4,7 @@
 		:name="`answer${store.currentQuestion}`"
 		type="radio"
 		:value="item.answer"
-		:disabled="store.waiting && store.isScored"
+		:disabled="store.waiting && store.isScored && options.revealAnswer"
 		class="sr-only"
 		@change="chooseAnswer(item.result)">
 	<label 
@@ -18,6 +18,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
+import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore';
 const props = defineProps({
 	item: {
 		type: Object,
@@ -30,18 +31,19 @@ const props = defineProps({
 })
 
 const store = useQuizStore();
+const options = useOptionsStore();
 let incorrectClass = ref('');
 
 // Always show the correct answer
 let correctClass = computed( () => {
-	return store.waiting && store.isScored && props.item.result === '1' ? 'correct' : ''
+	return options.revealAnswer && store.waiting && store.isScored && props.item.result === '1' ? 'correct' : ''
 });
 
 const chooseAnswer = (result) => {
 	store.processUserAnswer(result);
 
 	// Highlight the incorrect answer only on the clicked button
-	if (store.isScored && result === '0') {
+	if (store.isScored && options.revealAnswer && result === '0') {
 		incorrectClass.value = 'incorrect';
 	}
 }
