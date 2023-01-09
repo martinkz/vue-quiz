@@ -4,7 +4,7 @@
 		:name="`answer${store.currentQuestion}`"
 		type="radio"
 		:value="item.answer"
-		:disabled="store.waiting && store.isScored && options.revealAnswer"
+		:disabled="store.waiting && store.isScored && (options.revealAnswer || !options.nextBtn)"
 		class="sr-only"
 		@change="chooseAnswer(item.result)">
 	<label 
@@ -63,7 +63,7 @@ const chooseAnswer = (result) => {
 	font-weight: 500;
 	font-family: inherit;
 	cursor: pointer;
-	transition: border-color 0.25s;
+	transition: all 0.25s;
 }
 
 input[type="radio"]:not(:disabled) + .quiz-answer-btn:hover {

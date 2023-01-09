@@ -36,7 +36,7 @@ export const useQuizStore = defineStore("quizStore", {
 
 	actions: {
 		async init() {
-			this.quizData = (await import("@/quiz1.json")).default;
+			this.quizData = (await import("@/quiz2.json")).default;
 
 			if (this.quizData.type === "personality") {
 				this.personalityScores.length = this.quizData.data.length;
@@ -63,11 +63,8 @@ export const useQuizStore = defineStore("quizStore", {
 				this.waiting = true;
 
 				if (!options.nextButton) {
-					if (this.isScored && options.revealAnswer) {
-						setTimeout(() => this.nextStep(), 1000);
-					} else {
-						this.nextStep();
-					}
+					let timeout = this.isScored && options.revealAnswer ? 1200 : 500;
+					setTimeout(() => this.nextStep(), timeout);
 				}
 			}
 		},
