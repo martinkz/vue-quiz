@@ -25,6 +25,7 @@ export const useQuizStore = defineStore("quizStore", {
 		tempScore: undefined,
 		loading: true,
 		waiting: false,
+		timerActive: false,
 	}),
 
 	getters: {
@@ -44,6 +45,7 @@ export const useQuizStore = defineStore("quizStore", {
 			}
 
 			this.loading = false;
+			this.timerActive = true;
 		},
 
 		nextStep() {
@@ -92,11 +94,17 @@ export const useQuizStore = defineStore("quizStore", {
 			};
 		},
 
+		endEarly() {
+			this.timerActive = false;
+			this.showResult = true;
+		},
+
 		reset() {
 			this.currentQuestion = 0;
 			this.showResult = false;
 			this.score = 0;
 			this.personalityScores.fill(0);
+			this.timerActive = true;
 		},
 	},
 });

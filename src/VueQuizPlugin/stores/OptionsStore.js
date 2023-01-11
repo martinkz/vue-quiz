@@ -5,8 +5,8 @@ export const useOptionsStore = defineStore("optionsStore", {
 		comment: "Initial State",
 		nextButton: true,
 		revealAnswer: true,
-		timedQuiz: true,
-		timer: 10
+		timedQuiz: false,
+		timer: 200
 	}),
 
 	actions: {
