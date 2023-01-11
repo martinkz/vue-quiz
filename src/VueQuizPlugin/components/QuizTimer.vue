@@ -14,7 +14,7 @@ const options = useOptionsStore()
 
 let time = ref('');
 
-watch(() => store.timerActive, (newVal, oldVal) => {
+watch(() => store.timerActive, (newVal) => {
   if (newVal === true) {
     startTimer(options.timer);
   }
