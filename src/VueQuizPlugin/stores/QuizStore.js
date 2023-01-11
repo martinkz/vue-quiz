@@ -51,10 +51,10 @@ export const useQuizStore = defineStore("quizStore", {
 		nextStep() {
 			this.updateScore(this.tempScore);
 			this.waiting = false;
-			if (this.currentQuestion < this.numSlides - 1) {
-				this.currentQuestion++;
-			} else {
+			this.currentQuestion++;
+			if (this.currentQuestion >= this.numSlides) {
 				this.showResult = true;
+				this.timerActive = false;
 			}
 		},
 

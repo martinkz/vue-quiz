@@ -13,10 +13,17 @@ const store = useQuizStore();
 const options = useOptionsStore()
 
 let time = ref('');
+let timerInterval;
+
+if (store.timerActive === true) {
+  startTimer(options.timer);
+}
 
 watch(() => store.timerActive, (newVal) => {
   if (newVal === true) {
     startTimer(options.timer);
+  } else {
+    clearInterval(timerInterval);
   }
 });
 
@@ -24,7 +31,7 @@ function startTimer(duration) {
   let timer = duration;
   let minutes, seconds;
 
-  let timerInterval = setInterval(function timerFunc() {
+  timerInterval = setInterval(function timerFunc() {
     minutes = parseInt(timer / 60, 10); 
     seconds = parseInt(timer % 60, 10);
 
@@ -35,7 +42,7 @@ function startTimer(duration) {
 
     if (--timer < 0) {
       clearInterval(timerInterval);
-      time.value = "";
+      time.value = "00:00";
       store.endEarly();
     }
     // Return function and execute immediately, so that you don't have to wait for at least one 1s interval
