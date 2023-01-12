@@ -5,7 +5,7 @@
 		<QuizQuestionAnswerBtn v-for="(item,idx) in questionItem.answers" :key="item" :item="item" :index="idx" />
 		<transition name="expand">
 			<div v-if="options.nextButton" v-show="store.waiting" ref="controlsRef" class="controls">
-					<button type="button" @click="store.nextStep()">Next</button>
+					<button class="btn-standard" type="button" @click="store.nextStep()">Next</button>
 			</div>
 		</transition>
 	</div>

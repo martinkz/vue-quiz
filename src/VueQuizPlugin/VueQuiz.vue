@@ -46,9 +46,20 @@ options.update(props.options)
 
 
 <style scoped>
+.quiz-container {
+  border-radius: 20px;
+  box-shadow:0 0 15px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
 .quiz-slide-wrap {
+  max-width: 900px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
+  /* background: #6c5bdf; */
+  background: #40aec7;
+  overflow: hidden;
+  text-align: center;
 }
 
 .quiz-slide {
@@ -72,12 +83,17 @@ options.update(props.options)
   display: flex;
   justify-content: stretch;
   align-items: center;
+  font-size: 1.2rem;
   gap: 2rem;
+  padding: 1.5rem 2rem;
+  /* background: #493aa9; */
+  background: #423d3a;
 }
 .progress-bar {
   flex: 1 1 auto;
 }
 progress {
+  display: block;
   border-radius: 9px;
   width: 100%;
   height: 16px;
@@ -85,15 +101,15 @@ progress {
   overflow: hidden;
 }
 progress::-webkit-progress-bar {
-  background: white;
+  background: #62605e;
   border-radius: 9px;
 }
 progress::-webkit-progress-value {
-  background: rebeccapurple;
+  background: #ddd5cf;
   border-radius: 9px;
 }
 progress::-moz-progress-bar {
-  background: rebeccapurple;
+  background: #ddd5cf;
   border-radius: 9px;
 }
 </style>

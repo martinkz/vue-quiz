@@ -5,36 +5,36 @@
 		{
 			"question": "Would you rather… 1",
 			"answers": [
-				{ "answer": "STAY AT HOME AND WATCH A NEW NETFLIX SERIES THAT YOU’VE WANTED TO BINGE FOR AGES", "result": "1" },
-				{ "answer": "GET YOUR DANCING SHOES ON, YOU’RE OFF TO A GIG WITH YOUR MATES", "result": "0" },
-				{ "answer": "BE THE LIFE AND SOUL OF THE PARTY", "result": "0" },
-				{ "answer": "BE CALM, COLLECTED AND ALWAYS RELIABLE", "result": "0" }
+				{ "answer": "Stay at home and watch a new netflix series that you’ve wanted to binge for ages", "result": "1" },
+				{ "answer": "Get your dancing shoes on, you’re off to a gig with your mates", "result": "0" },
+				{ "answer": "Be the life and soul of the party", "result": "0" },
+				{ "answer": "Be calm, collected and always reliable", "result": "0" }
 			],
-			"image": "https://picsum.photos/900/600"
+			"image": "Https://picsum.Photos/900/600"
 		},
 		{
 			"question": "Would you rather… 2",
 			"answers": [
-				{ "answer": "ROAD TRIP TO A FESTIVAL WITH LOADS OF FRIENDS, READY FOR A WILD WEEKEND WITH NON-STOP MUSIC", "result": "1" },
-				{ "answer": "AN EVENING AT AN INTIMATE ACOUSTIC GIG WITH DINNER AND SOPHISTICATED DRINKS AFTERWARDS", "result": "0" }
+				{ "answer": "Road trip to a festival with loads of friends, ready for a wild weekend with non-stop music", "result": "1" },
+				{ "answer": "An evening at an intimate acoustic gig with dinner and sophisticated drinks afterwards", "result": "0" }
 			],
-			"image": "https://picsum.photos/900/600"
+			"image": "Https://picsum.Photos/900/600"
 		},
 		{
 			"question": "Would you rather… 3",
 			"answers": [
-				{ "answer": "SUN-BATHE AROUND THE POOL, COCKTAIL IN HAND, HAVE A BOOK ON THE GO AND PLENTY OF SNACKS AT HAND", "result": "1" },
-				{ "answer": "BE UP EARLY ON YOUR HOLIDAY, OUT TO SEE THE SITES AND MAYBE A BIT OF WATER SPORTS IN THE AFTERNOON? QUICK CHANGE AND OFF TO THE LOCAL BARS!", "result": "0" }
+				{ "answer": "Sun-bathe around the pool, cocktail in hand, have a book on the go and plenty of snacks at hand", "result": "1" },
+				{ "answer": "Be up early on your holiday, out to see the sites and maybe a bit of water sports in the afternoon? Quick change and off to the local bars!", "result": "0" }
 			],
-			"image": "https://picsum.photos/900/600"
+			"image": "Https://picsum.Photos/900/600"
 		},
 		{
 			"question": "Would you rather… 4",
 			"answers": [
-				{ "answer": "BE THE LIFE AND SOUL OF THE PARTY", "result": "1" },
-				{ "answer": "BE CALM, COLLECTED AND ALWAYS RELIABLE", "result": "0" }
+				{ "answer": "Be the life and soul of the party", "result": "1" },
+				{ "answer": "Be calm, collected and always reliable", "result": "0" }
 			],
-			"image": "https://picsum.photos/900/600"
+			"image": "Https://picsum.Photos/900/600"
 		}
 	]
 }

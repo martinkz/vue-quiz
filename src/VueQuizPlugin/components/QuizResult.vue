@@ -11,7 +11,7 @@
       <h1>Unknown quiz type, no result calculated</h1>
     </div>
     <div class="controls">
-      <button type="button" @click="store.reset()">Play again</button>
+      <button class="btn-standard" type="button" @click="store.reset()">Play again</button>
     </div>
   </div>
 </template>

@@ -54,11 +54,12 @@ const chooseAnswer = (result) => {
 <style scoped>
 .quiz-answer-btn {
 	display: block;
-	background: blueviolet;
+	/* background: #392e83; */
+	background: #413d3a;
 	color: white;
-	border-radius: 8px;
+	/* border-radius: 8px; */
 	border: 1px solid transparent;
-	padding: 0.6em 1.2em;
+	padding: 1rem 4rem;
 	font-size: 1em;
 	font-weight: 500;
 	font-family: inherit;
@@ -66,8 +67,12 @@ const chooseAnswer = (result) => {
 	transition: all 0.25s;
 }
 
+.quiz-answer-btn + input + .quiz-answer-btn {
+	border-top: 1px solid #5e5c59;
+}
+
 input[type="radio"]:not(:disabled) + .quiz-answer-btn:hover {
-	border-color: #646cff;
+	background: #40aec7;
 }
 
 .quiz-answer-btn:focus,
@@ -75,13 +80,13 @@ input[type="radio"]:not(:disabled) + .quiz-answer-btn:hover {
 	outline: 4px auto -webkit-focus-ring-color;
 }
 input[type="radio"]:checked + label {
-	background: rgb(47, 90, 230);
+	background: #40aec7;
 }
 input[type="radio"] + label.correct {
-	background: green;
+	background: #35a150;
 }
 
 input[type="radio"] + label.incorrect {
-	background: red;
+	background: #b33d3d;
 }
 </style>
