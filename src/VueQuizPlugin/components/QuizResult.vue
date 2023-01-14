@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="resultSlideEl">
     <div v-if="resultItem.type === 'personality'">
       <div><img class="result-img" :src="resultItem.result.image" alt=""></div>
       <h1>{{ resultItem.result.title }}</h1>
@@ -17,9 +17,16 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue"
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
 
 const store = useQuizStore();
+
+let resultSlideEl = ref(null);
+
+onMounted(() => {
+  store.nextSlideHeight = resultSlideEl.value.clientHeight;
+})
 
 defineProps({
   resultItem: {

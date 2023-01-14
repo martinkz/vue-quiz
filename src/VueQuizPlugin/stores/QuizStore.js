@@ -26,6 +26,7 @@ export const useQuizStore = defineStore("quizStore", {
 		loading: true,
 		waiting: false,
 		timerActive: false,
+		nextSlideHeight: 0,
 	}),
 
 	getters: {

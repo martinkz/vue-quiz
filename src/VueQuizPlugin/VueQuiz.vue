@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-// import { reactive } from "vue"
+import { ref, watch } from "vue"
 import QuizQuestion from '@/VueQuizPlugin/components/QuizQuestion.vue'
 import QuizResult from '@/VueQuizPlugin/components/QuizResult.vue'
 import QuizTimer from '@/VueQuizPlugin/components/QuizTimer.vue'
@@ -42,43 +42,59 @@ const props = defineProps({
 
 const options = useOptionsStore()
 options.update(props.options)
-</script>
 
+let height = ref(0)
+
+watch(() => store.nextSlideHeight, (newVal, oldVal) => {
+  height.value = newVal+'px';
+})
+
+</script>
 
 <style scoped>
 .quiz-container {
+  width: min(900px, 100%);
+  margin: 0 auto;
   border-radius: 20px;
   box-shadow:0 0 15px rgba(0,0,0,0.2);
   overflow: hidden;
 }
 .quiz-slide-wrap {
-  max-width: 900px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  /* background: #6c5bdf; */
-  background: #40aec7;
-  overflow: hidden;
+  justify-items: start;
+  align-items: start;
   text-align: center;
+  transition: all 0.4s linear;
+  height: v-bind(height);
+  /* overflow: hidden; */
 }
 
 .quiz-slide {
+  width: 100%;
   grid-row: 1;
   grid-column: 1;
+  /* overflow: hidden; */
 }
 .slide-up-enter-active,
 .slide-up-leave-active {
-  transition: all 0.2s linear;
+  transition: opacity 0.4s linear;
   
 }
-.slide-up-enter-from {
-  opacity: 0;
-  translate: 0 100px;
-}
+.slide-up-enter-from,
 .slide-up-leave-to {
   opacity: 0;
-  translate: 0 -100px;
+  /* max-height: v-bind(store.nextSlideHeight); */
+  /* translate: 0 100px; */
 }
+.slide-up-enter-to,
+.slide-up-leave-from {
+  opacity: 1;
+  /* max-height: v-bind(store.nextSlideHeight); */
+  /* translate: 0 -100px; */
+}
+
 .quiz-header {
   display: flex;
   justify-content: stretch;
