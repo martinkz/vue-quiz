@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Source+Sans+Pro:wght@300;700&display=swap');
 
-@keyframes background-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 :root {
   font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
   /* font-family: 'Source Sans Pro', sans-serif; */
@@ -30,17 +18,8 @@
 }
 
 body {
-  margin: 0;
-  padding: 10px;
-  display: grid;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
   scrollbar-gutter: stable;
   overflow-y: scroll;
-  background-size: 300% 300%;
-  background-image: linear-gradient(-45deg, #e33b3b 0%, #ff357f 25%, #9844b7 50%, #576fe6 100%);
-  animation: background-shift 50s ease infinite;
 }
 
 html,

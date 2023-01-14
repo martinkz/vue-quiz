@@ -45,7 +45,7 @@ options.update(props.options)
 
 let height = ref(0)
 
-watch(() => store.nextSlideHeight, (newVal, oldVal) => {
+watch(() => store.nextSlideHeight, (newVal) => {
   height.value = newVal+'px';
 })
 
@@ -53,14 +53,12 @@ watch(() => store.nextSlideHeight, (newVal, oldVal) => {
 
 <style scoped>
 .quiz-container {
-  width: min(900px, 100%);
-  margin: 0 auto;
+  width: 100%;
   border-radius: 20px;
   box-shadow:0 0 15px rgba(0,0,0,0.2);
   overflow: hidden;
 }
 .quiz-slide-wrap {
-  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
   justify-items: start;
@@ -85,14 +83,10 @@ watch(() => store.nextSlideHeight, (newVal, oldVal) => {
 .slide-up-enter-from,
 .slide-up-leave-to {
   opacity: 0;
-  /* max-height: v-bind(store.nextSlideHeight); */
-  /* translate: 0 100px; */
 }
 .slide-up-enter-to,
 .slide-up-leave-from {
   opacity: 1;
-  /* max-height: v-bind(store.nextSlideHeight); */
-  /* translate: 0 -100px; */
 }
 
 .quiz-header {

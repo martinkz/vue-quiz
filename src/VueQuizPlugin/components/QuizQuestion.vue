@@ -60,8 +60,6 @@ h1 {
 	display: block;
 	aspect-ratio: 3 / 2;
 	width: 100%;
-	/* width: 900px;
-	height: 600px; */
 }
 
 .expand-leave-active,
