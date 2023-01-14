@@ -1,0 +1,1 @@
+calculate .quiz-slide-wrap height on page resize
