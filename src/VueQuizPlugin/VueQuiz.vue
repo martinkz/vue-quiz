@@ -8,7 +8,7 @@
       </div>
       <div class="status">{{ `${store.currentQuestion} / ${store.numSlides}` }}</div>
     </header>
-    <section class="quiz-slide-wrap">
+    <section ref="slideWrapEl" class="quiz-slide-wrap">
       <Transition name="slide-up">
         <QuizQuestion 
         v-if="!store.showResult"
@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue"
+import { ref, watch, onMounted, nextTick } from "vue"
 import QuizQuestion from '@/VueQuizPlugin/components/QuizQuestion.vue'
 import QuizResult from '@/VueQuizPlugin/components/QuizResult.vue'
 import QuizTimer from '@/VueQuizPlugin/components/QuizTimer.vue'
@@ -47,6 +47,23 @@ let height = ref(0)
 
 watch(() => store.nextSlideHeight, (newVal) => {
   height.value = newVal+'px';
+})
+
+const slideWrapEl = ref(null);
+
+onMounted(() => {
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    if (slideWrapEl.value) {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(async () => {
+        height.value = 'auto';
+        await nextTick();
+        console.log(slideWrapEl.value.clientHeight);
+        height.value = slideWrapEl.value.clientHeight + 'px';
+      }, 100);
+    }
+  })
 })
 
 </script>
