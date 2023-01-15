@@ -6,12 +6,13 @@ export const useOptionsStore = defineStore("optionsStore", {
 		nextButton: true,
 		revealAnswer: true,
 		timedQuiz: true,
-		timer: 600
+		timer: 600,
+		imageAspectRatio: "3 / 2",
 	}),
 
 	actions: {
 		update(options) {
-			Object.assign(this, options)
+			Object.assign(this, options);
 		},
 	},
 });

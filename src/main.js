@@ -8,5 +8,6 @@ app.use(VueQuizPlugin, {
 	comment: "This is the VueQuiz plugin project",
 	nextButton: true,
 	revealAnswer: true,
+	// imageAspectRatio: "2 / 1",
 });
 app.mount("#app");

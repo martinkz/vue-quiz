@@ -16,12 +16,14 @@ import { ref, onMounted, watch } from "vue"
 import QuizQuestionAnswerBtn from '@/VueQuizPlugin/components/QuizQuestionAnswerBtn.vue';
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
 import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore';
+import { storeToRefs } from 'pinia';
 
 const store = useQuizStore();
 const options = useOptionsStore();
 const controlsRef = ref(null)
 let controlsHeight = ref(0)
 let slideEl = ref(null);
+const { imageAspectRatio } = storeToRefs(options);
 let btnHeight;
 
 onMounted(() => {
@@ -58,7 +60,7 @@ h1 {
 }
 .question-img {
 	display: block;
-	aspect-ratio: 3 / 2;
+	aspect-ratio: v-bind(imageAspectRatio);
 	width: 100%;
 }
 
