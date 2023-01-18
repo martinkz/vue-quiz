@@ -21,8 +21,8 @@ import { storeToRefs } from 'pinia';
 const store = useQuizStore();
 const options = useOptionsStore();
 const controlsRef = ref(null)
-let controlsHeight = ref(0)
-let slideEl = ref(null);
+const controlsHeight = ref(0)
+const slideEl = ref(null);
 const { imageAspectRatio } = storeToRefs(options);
 let btnHeight;
 

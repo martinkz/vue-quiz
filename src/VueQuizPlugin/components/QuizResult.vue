@@ -22,7 +22,7 @@ import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
 
 const store = useQuizStore();
 
-let resultSlideEl = ref(null);
+const resultSlideEl = ref(null);
 
 onMounted(() => {
   store.nextSlideHeight = resultSlideEl.value.clientHeight;

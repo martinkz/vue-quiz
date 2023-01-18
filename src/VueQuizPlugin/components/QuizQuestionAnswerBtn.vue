@@ -32,10 +32,10 @@ const props = defineProps({
 
 const store = useQuizStore();
 const options = useOptionsStore();
-let incorrectClass = ref('');
+const incorrectClass = ref('');
 
 // Always show the correct answer
-let correctClass = computed( () => {
+const correctClass = computed( () => {
 	return options.revealAnswer && store.waiting && store.isScored && props.item.result === '1' ? 'correct' : ''
 });
 

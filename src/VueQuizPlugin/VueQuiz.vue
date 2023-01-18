@@ -43,7 +43,7 @@ const props = defineProps({
 const options = useOptionsStore()
 options.update(props.options)
 
-let height = ref(0)
+const height = ref(0)
 
 watch(() => store.nextSlideHeight, (newVal) => {
   height.value = newVal+'px';

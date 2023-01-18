@@ -1,3 +1,2 @@
 Make question image/title optional
-Update let refs to const
 Explore slots for questions with various types of content (e.g. text box) or <component is="">?

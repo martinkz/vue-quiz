@@ -12,7 +12,7 @@ import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore'
 const store = useQuizStore();
 const options = useOptionsStore()
 
-let time = ref('');
+const time = ref('');
 let timerInterval;
 
 if (store.timerActive === true) {
