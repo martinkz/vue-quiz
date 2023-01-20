@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Source+Sans+Pro:wght@300;700&display=swap');
 
 :root {
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
-  /* font-family: 'Source Sans Pro', sans-serif; */
+  --body-font: 'Source Sans Pro';
+  --title-font: 'DM Serif Text';
+  /* font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif; */
+  font-family: var(--body-font), sans-serif;
   font-size: 20px;
   font-weight: 400;
 
@@ -35,8 +37,8 @@ body {
 
 
 h1,h2,h3,h4 {
-  font-family: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-  /* font-family: 'DM Serif Text', serif; */
+  /* font-family: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol; */
+  font-family: var(--title-font), serif;
 }
 
 h1 {

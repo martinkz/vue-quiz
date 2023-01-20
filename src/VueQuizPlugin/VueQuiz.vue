@@ -43,7 +43,7 @@ const props = defineProps({
 const options = useOptionsStore()
 options.update(props.options)
 
-const height = ref(0)
+const height = ref('auto');
 
 watch(() => store.nextSlideHeight, (newVal) => {
   height.value = newVal+'px';
@@ -52,19 +52,37 @@ watch(() => store.nextSlideHeight, (newVal) => {
 const slideWrapEl = ref(null);
 
 onMounted(() => {
+  onFontLoad();
+  onResize();
+});
+
+const onResize = () => {
   let resizeTimer;
   window.addEventListener('resize', () => {
-    if (slideWrapEl.value) {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(async () => {
-        height.value = 'auto';
-        await nextTick();
-        console.log(slideWrapEl.value.clientHeight);
-        height.value = slideWrapEl.value.clientHeight + 'px';
-      }, 100);
+      resizeTimer = setTimeout(updateSlideHeight, 100);
+  });
+};
+
+const onFontLoad = () => {
+  const fontCSSProps = ['--body-font', '--title-font'];
+  const computedStyle = getComputedStyle(document.documentElement);
+  const fontValues = fontCSSProps.map(el => computedStyle.getPropertyValue(el));
+  const fontTimer = setInterval(() => {
+    if (fontValues.every(el => document.fonts.check("12px " + el))) {
+      clearInterval(fontTimer);
+      updateSlideHeight();
     }
-  })
-})
+  }, 100);
+}
+
+const updateSlideHeight = async () => {
+  if (slideWrapEl.value !== null) {
+    height.value = 'auto';
+    await nextTick(); // Might not be needed?
+    store.nextSlideHeight = slideWrapEl.value.clientHeight + 'px';
+  }
+}
 
 </script>
 
