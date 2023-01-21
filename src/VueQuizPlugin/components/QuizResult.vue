@@ -19,8 +19,12 @@
 <script setup>
 import { ref, onMounted } from "vue"
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
+import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore';
+import { storeToRefs } from 'pinia';
 
 const store = useQuizStore();
+const options = useOptionsStore();
+const { imageAspectRatio } = storeToRefs(options);
 
 const resultSlideEl = ref(null);
 
@@ -39,6 +43,8 @@ defineProps({
 
 <style scoped>
 .result-img {
-  margin: 0 auto;
+  display: block;
+  aspect-ratio: v-bind(imageAspectRatio);
+  width: 100%;
 }
 </style>
