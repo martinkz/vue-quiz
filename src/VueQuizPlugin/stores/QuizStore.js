@@ -19,6 +19,7 @@ export const useQuizStore = defineStore("quizStore", {
 	state: () => ({
 		quizData: [],
 		currentQuestion: 0,
+		showIntro: false,
 		showResult: false,
 		score: 0,
 		personalityScores: [],
@@ -32,6 +33,7 @@ export const useQuizStore = defineStore("quizStore", {
 	getters: {
 		numSlides: (state) => state.quizData.data.length,
 		currentQuestionData: (state) => state.quizData.data[state.currentQuestion],
+		introData: (state) => state.quizData.intro,
 		isPersonality: (state) => state.quizData.type === "personality",
 		isScored: (state) => state.quizData.type === "scored",
 	},
@@ -46,6 +48,16 @@ export const useQuizStore = defineStore("quizStore", {
 			}
 
 			this.loading = false;
+
+			if(this.introData) {
+				this.showIntro = true;
+			} else {
+				this.start();
+			}
+		},
+
+		start() {
+			this.showIntro = false;
 			this.timerActive = true;
 		},
 

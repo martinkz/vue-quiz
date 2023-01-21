@@ -1,6 +1,11 @@
 {
 	"type": "scored",
 	"timed": false,
+	"intro": {
+		"title": "Welcome to our quiz!",
+		"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae facilisis risus, quis pulvinar magna. Phasellus consequat turpis in leo volutpat convallis. Nulla diam dui, faucibus vel cursus sed, rutrum a libero. Mauris blandit euismod lacus, eget commodo lorem interdum a. Sed fermentum vulputate dignissim. Duis tempor pulvinar lectus a tristique. Mauris finibus dapibus ipsum vel ullamcorper. Sed a elit ligula. Suspendisse fermentum dui arcu, at elementum purus lacinia vitae. Integer fermentum porttitor aliquet. Mauris a mi odio. Aenean euismod vestibulum luctus.",
+		"image": "https://picsum.photos/900/600"
+	},
 	"data": [
 		{
 			"question": "Would you rather… 1",

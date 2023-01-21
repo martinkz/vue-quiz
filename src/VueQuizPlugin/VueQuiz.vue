@@ -10,8 +10,9 @@
     </header>
     <section ref="slideWrapEl" class="quiz-slide-wrap">
       <Transition name="slide-up">
+        <QuizIntro v-if="store.showIntro && store.introData" class="quiz-slide" :intro-item="store.introData" />
         <QuizQuestion 
-        v-if="!store.showResult"
+        v-else-if="!store.showResult"
         :key="store.currentQuestionData"
         :question-item="store.currentQuestionData"
         class="quiz-slide" />
@@ -23,6 +24,7 @@
 
 <script setup>
 import { ref, watch, onMounted, nextTick } from "vue"
+import QuizIntro from '@/VueQuizPlugin/components/QuizIntro.vue'
 import QuizQuestion from '@/VueQuizPlugin/components/QuizQuestion.vue'
 import QuizResult from '@/VueQuizPlugin/components/QuizResult.vue'
 import QuizTimer from '@/VueQuizPlugin/components/QuizTimer.vue'
@@ -80,7 +82,7 @@ const updateSlideHeight = async () => {
   if (slideWrapEl.value !== null) {
     height.value = 'auto';
     await nextTick(); // Might not be needed?
-    store.nextSlideHeight = slideWrapEl.value.clientHeight + 'px';
+    store.nextSlideHeight = slideWrapEl.value.clientHeight;
   }
 }
 
