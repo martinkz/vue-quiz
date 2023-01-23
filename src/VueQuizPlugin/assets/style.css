@@ -50,6 +50,12 @@ img {
   width: 100%;
 }
 
+.question-img {
+  display: block;
+  aspect-ratio: 3 / 2;
+  width: 100%;
+}
+
 .btn-standard {
   all: unset;
   display: block;

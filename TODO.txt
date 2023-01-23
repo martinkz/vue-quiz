@@ -1,2 +1,4 @@
+Remove next button transition from quizquestion as it's not needed
+Combine intro/question/result slides into QuizSlide
 Make question image/title optional
 Explore slots for questions with various types of content (e.g. text box) or <component is="">?

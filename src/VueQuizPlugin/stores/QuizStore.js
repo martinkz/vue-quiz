@@ -49,7 +49,7 @@ export const useQuizStore = defineStore("quizStore", {
 
 			this.loading = false;
 
-			if(this.introData) {
+			if(this.introData____) {
 				this.showIntro = true;
 			} else {
 				this.start();

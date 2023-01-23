@@ -1,9 +1,15 @@
 <template>
 	<div class="app-wrap">
-		<VueQuiz
-		:options="{
-			comment: 'Option set at the component level',
-		}" />
+		<VueQuiz :options="{comment: 'Option set at the component level'}">
+			<template #questionSlot="{ slotProps }">
+				{{ slotProps }}
+				<h1>{{ slotProps.question }}</h1>
+				<div><img class="question-img" :src="slotProps.image" alt=""></div>
+			</template>
+			<template #nextBtn>
+				<button class="btn-standard" type="button">Next</button>
+			</template>
+		</VueQuiz>
 	</div>
 
 </template>

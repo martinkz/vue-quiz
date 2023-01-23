@@ -10,12 +10,11 @@
     </header>
     <section ref="slideWrapEl" class="quiz-slide-wrap">
       <Transition name="slide-up">
-        <QuizIntro v-if="store.showIntro && store.introData" class="quiz-slide" :intro-item="store.introData" />
-        <QuizQuestion 
-        v-else-if="!store.showResult"
-        :key="store.currentQuestionData"
-        :question-item="store.currentQuestionData"
-        class="quiz-slide" />
+        <QuizSlide v-if="!store.showResult" :key="store.currentQuestionData" :question-item="store.currentQuestionData" class="quiz-slide">
+          <template v-for="(slot, index) of Object.keys($slots)" :key="index" #[slot]="slotProps">
+            <slot :name="slot" :slot-props="slotProps.data"></slot>
+          </template>
+        </QuizSlide>
         <QuizResult v-else class="quiz-slide" :result-item="store.getResultItem()" />
       </Transition>
     </section>
@@ -25,6 +24,7 @@
 <script setup>
 import { ref, watch, onMounted, nextTick } from "vue"
 import QuizIntro from '@/VueQuizPlugin/components/QuizIntro.vue'
+import QuizSlide from '@/VueQuizPlugin/components/QuizSlide.vue'
 import QuizQuestion from '@/VueQuizPlugin/components/QuizQuestion.vue'
 import QuizResult from '@/VueQuizPlugin/components/QuizResult.vue'
 import QuizTimer from '@/VueQuizPlugin/components/QuizTimer.vue'
