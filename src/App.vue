@@ -6,9 +6,7 @@
 				<h1>{{ slotProps.question }}</h1>
 				<div><img class="question-img" :src="slotProps.image" alt=""></div>
 			</template>
-			<template #nextBtn>
-				<button class="btn-standard" type="button">Next</button>
-			</template>
+			<template #nextBtn>Next</template>
 		</VueQuiz>
 	</div>
 

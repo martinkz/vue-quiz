@@ -2,8 +2,10 @@
   <div ref="slideEl">
     <slot name="questionSlot" :data="questionItem"></slot>
     <QuizQuestionAnswerBtn v-for="(item, idx) in questionItem.answers" :key="item" :item="item" :index="idx" />
-    <div v-if="options.nextButton" v-show="store.waiting" ref="controlsRef" class="controls" @click="store.nextStep()">
-      <slot name="nextBtn"></slot>
+    <div v-if="options.nextButton" v-show="store.waiting" ref="controlsRef" class="controls">
+      <button class="btn-standard" type="button" @click="store.nextStep()">
+        <slot name="nextBtn"></slot>
+      </button>
     </div>
   </div>
 </template>
