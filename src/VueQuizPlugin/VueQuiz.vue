@@ -23,9 +23,7 @@
 
 <script setup>
 import { ref, watch, onMounted, nextTick } from "vue"
-import QuizIntro from '@/VueQuizPlugin/components/QuizIntro.vue'
 import QuizSlide from '@/VueQuizPlugin/components/QuizSlide.vue'
-import QuizQuestion from '@/VueQuizPlugin/components/QuizQuestion.vue'
 import QuizResult from '@/VueQuizPlugin/components/QuizResult.vue'
 import QuizTimer from '@/VueQuizPlugin/components/QuizTimer.vue'
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore'
@@ -65,7 +63,6 @@ watch(() => store.waiting, () => {
 const slideWrapEl = ref(null);
 
 onMounted(() => {
-  //onFontLoad();
   onResize();
 });
 
@@ -80,7 +77,7 @@ const onResize = () => {
 const updateSlideHeight = async () => {
   if (slideWrapEl.value !== null) {
     height.value = 'auto';
-    // await nextTick(); // Might not be needed?
+    await nextTick(); // Might not be needed?
     store.nextSlideHeight = slideWrapEl.value.clientHeight;
     store.initialLoad = false;
   }

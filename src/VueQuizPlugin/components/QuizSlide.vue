@@ -17,23 +17,13 @@ import { ref, onMounted, watch, nextTick } from "vue";
 import QuizQuestionAnswerBtn from '@/VueQuizPlugin/components/QuizQuestionAnswerBtn.vue';
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
 import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore';
-import { storeToRefs } from 'pinia';
 
 const store = useQuizStore();
 const options = useOptionsStore();
-// const controlsRef = ref(null);
 const slideEl = ref(null);
-const { imageAspectRatio } = storeToRefs(options);
-let btnHeight;
 
 onMounted(() => {
   store.nextSlideHeight = slideEl.value.clientHeight;
-  // console.log("Slide mounted: "+store.nextSlideHeight);
-  // if (controlsRef.value) {
-  //   controlsRef.value.style.display = 'block';
-  //   btnHeight = controlsRef.value.getBoundingClientRect().height;
-  //   controlsRef.value.style.display = 'none';
-  // }
 });
 
 if (options.nextButton) {

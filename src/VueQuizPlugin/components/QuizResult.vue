@@ -20,8 +20,6 @@ import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore';
 
 const store = useQuizStore();
 const options = useOptionsStore();
-
-
 const slideEl = ref(null);
 
 onMounted(() => {
