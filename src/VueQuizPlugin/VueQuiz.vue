@@ -48,13 +48,24 @@ options.update(props.options)
 const height = ref('auto');
 
 watch(() => store.nextSlideHeight, (newVal) => {
-  height.value = newVal+'px';
+  if (!store.initialLoad) {
+    // console.log('VueQuiz: ' + newVal, store.initialLoad);
+    height.value = newVal + 'px';
+  }
 })
+
+watch(() => store.waiting, () => {
+  if (store.initialLoad) {
+    store.nextSlideHeight = slideWrapEl.value.clientHeight;
+    // console.log("store.waiting 2: " + store.nextSlideHeight);
+    store.initialLoad = false;
+  }
+});
 
 const slideWrapEl = ref(null);
 
 onMounted(() => {
-  onFontLoad();
+  //onFontLoad();
   onResize();
 });
 
@@ -62,27 +73,16 @@ const onResize = () => {
   let resizeTimer;
   window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(updateSlideHeight, 100);
+      resizeTimer = setTimeout(updateSlideHeight, 200);
   });
 };
-
-const onFontLoad = () => {
-  const fontCSSProps = ['--body-font', '--title-font'];
-  const computedStyle = getComputedStyle(document.documentElement);
-  const fontValues = fontCSSProps.map(el => computedStyle.getPropertyValue(el));
-  const fontTimer = setInterval(() => {
-    if (fontValues.every(el => document.fonts.check("12px " + el))) {
-      clearInterval(fontTimer);
-      updateSlideHeight();
-    }
-  }, 100);
-}
 
 const updateSlideHeight = async () => {
   if (slideWrapEl.value !== null) {
     height.value = 'auto';
-    await nextTick(); // Might not be needed?
+    // await nextTick(); // Might not be needed?
     store.nextSlideHeight = slideWrapEl.value.clientHeight;
+    store.initialLoad = false;
   }
 }
 

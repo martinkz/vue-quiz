@@ -1,14 +1,11 @@
 <template>
-  <div ref="resultSlideEl">
+  <div ref="slideEl">
     <div v-if="resultItem.type === 'personality'">
       <div><img class="result-img" :src="resultItem.result.image" alt=""></div>
       <h1>{{ resultItem.result.title }}</h1>
     </div>
     <div v-else-if="resultItem.type === 'scored'">
       <h1>Congratulations, you scored {{ resultItem.result }}!</h1>
-    </div>
-    <div v-else>
-      <h1>Unknown quiz type, no result calculated</h1>
     </div>
     <div class="controls">
       <button class="btn-standard" type="button" @click="store.reset()">Play again</button>
@@ -17,20 +14,29 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, watch, nextTick } from "vue"
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
 import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore';
-import { storeToRefs } from 'pinia';
 
 const store = useQuizStore();
 const options = useOptionsStore();
-const { imageAspectRatio } = storeToRefs(options);
 
-const resultSlideEl = ref(null);
+
+const slideEl = ref(null);
 
 onMounted(() => {
-  store.nextSlideHeight = resultSlideEl.value.clientHeight;
+  store.nextSlideHeight = slideEl.value.clientHeight;
 })
+
+if (options.nextButton) {
+  watch(() => store.waiting, async () => {
+    await nextTick();
+    if (slideEl.value) {
+      store.nextSlideHeight = slideEl.value.clientHeight;
+      // console.log("QuizSlide store.waiting: " + store.nextSlideHeight);
+    }
+  });
+}
 
 defineProps({
   resultItem: {
@@ -41,10 +47,3 @@ defineProps({
 
 </script>
 
-<style scoped>
-.result-img {
-  display: block;
-  aspect-ratio: v-bind(imageAspectRatio);
-  width: 100%;
-}
-</style>
