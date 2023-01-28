@@ -1,8 +1,29 @@
 <template>
   <div ref="slideEl">
-    <slot name="questionSlot" :data="questionItem"></slot>
-    <div class="quiz-answers-wrap">
-      <QuizQuestionAnswerBtn v-for="(item, idx) in questionItem.answers" :key="item" :item="item" :index="idx" />
+    <header class="slide-header">
+      <slot v-if="store.currentSlideType==='question'" name="questionSlot" :data="slideData"></slot>
+      
+      <template v-if="store.currentSlideType==='result'">
+        <slot name="resultSlot" :data="{ type, result } = slideData">
+          <template v-if="type === 'personality'">
+            <img v-if="result.image" class="slide-img" :src="result.image" alt="">
+            <h1 v-if="result.title">{{ result.title }}</h1>
+          </template>
+          <template v-else-if="type === 'scored'">
+            <h1>Congratulations, you scored {{ result }}!</h1>
+          </template>
+        </slot>
+      </template>
+    </header>
+
+    <div v-if="store.currentSlideType==='result'" class="controls">
+      <button class="btn-standard" type="button" @click="store.reset()">
+        <slot name="playAgainBtn">Play again</slot>
+      </button>
+    </div>
+
+    <div v-if="store.currentSlideType==='question'" class="quiz-answers-wrap">
+      <QuizQuestionAnswerBtn v-for="(item, idx) in slideData.answers" :key="item" :item="item" :index="idx" />
     </div>
     <div v-if="options.nextButton" v-show="store.waiting" ref="controlsRef" class="controls">
       <button class="btn-standard" type="button" @click="store.nextStep()">
@@ -37,7 +58,7 @@ if (options.nextButton) {
 }
 
 defineProps({
-  questionItem: {
+  slideData: {
     type: Object,
     required: true,
   }

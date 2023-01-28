@@ -10,12 +10,14 @@
     </header>
     <section ref="slideWrapEl" class="quiz-slide-wrap">
       <Transition name="slide-up">
-        <QuizSlide v-if="!store.showResult" :key="store.currentQuestionData" :question-item="store.currentQuestionData" class="quiz-slide">
+        <QuizSlide 
+        :key="store.currentQuestionData" 
+        :slide-data="store.currentQuestionData" 
+        class="quiz-slide">
           <template v-for="(slot, index) of Object.keys($slots)" :key="index" #[slot]="slotProps">
             <slot :name="slot" :slot-props="slotProps.data"></slot>
           </template>
         </QuizSlide>
-        <QuizResult v-else class="quiz-slide" :result-item="store.getResultItem()" />
       </Transition>
     </section>
   </div>

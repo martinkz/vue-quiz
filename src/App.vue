@@ -4,9 +4,13 @@
 			<template #questionSlot="{ slotProps }">
 				<!-- {{ slotProps }} -->
 				<h1>{{ slotProps.question }}</h1>
-				<img class="question-img" :src="slotProps.image" alt="">
+				<img class="slide-img" :src="slotProps.image" alt="">
 			</template>
 			<template #nextBtn>Next question</template>
+			<template #resultSlot="{ slotProps }">
+				<!-- <h1>Congratulations, you scored {{ slotProps.result }}!</h1> -->
+			</template>
+			<template #playAgainBtn>Play quiz again</template>
 		</VueQuiz>
 	</div>
 
