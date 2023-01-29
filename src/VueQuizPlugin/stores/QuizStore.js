@@ -19,8 +19,7 @@ export const useQuizStore = defineStore("quizStore", {
 	state: () => ({
 		quizData: [],
 		currentQuestion: 0,
-		currentSlideType: 'question',
-		showIntro: false,
+		currentSlideType: "question",
 		showResult: false,
 		score: 0,
 		personalityScores: [],
@@ -30,13 +29,14 @@ export const useQuizStore = defineStore("quizStore", {
 		timerActive: false,
 		nextSlideHeight: 0,
 		initialLoad: true,
+		triggerHeightCalc: false,
 	}),
 
 	getters: {
 		numSlides: (state) => state.quizData.data.length,
 		currentQuestionData: (state) => {
 			if (state.currentSlideType === "intro") return state.quizData.intro;
-			if (state.currentSlideType === "question") return state.quizData.data[state.currentQuestion]
+			if (state.currentSlideType === "question") return state.quizData.data[state.currentQuestion];
 			if (state.currentSlideType === "result") return state.getResultItem();
 		},
 		introData: (state) => state.quizData.intro,
@@ -55,16 +55,16 @@ export const useQuizStore = defineStore("quizStore", {
 
 			this.loading = false;
 
-			if(this.introData____) {
-				this.showIntro = true;
+			if (this.introData) {
+				this.currentSlideType = "intro";
 			} else {
 				this.start();
 			}
 		},
 
 		start() {
-			this.showIntro = false;
 			this.timerActive = true;
+			this.currentSlideType = "question";
 		},
 
 		nextStep() {
@@ -74,7 +74,7 @@ export const useQuizStore = defineStore("quizStore", {
 			if (this.currentQuestion >= this.numSlides) {
 				this.showResult = true;
 				this.timerActive = false;
-				this.currentSlideType = 'result';
+				this.currentSlideType = "result";
 			}
 		},
 
@@ -116,6 +116,7 @@ export const useQuizStore = defineStore("quizStore", {
 
 		endEarly() {
 			this.timerActive = false;
+			this.waiting = false;
 			this.showResult = true;
 			this.currentSlideType = "result";
 		},

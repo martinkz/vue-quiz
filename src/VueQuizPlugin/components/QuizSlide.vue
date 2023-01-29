@@ -1,6 +1,8 @@
 <template>
   <div ref="slideEl">
     <header class="slide-header">
+      <slot v-if="store.currentSlideType==='intro'" name="introSlot" :data="slideData"></slot>
+      
       <slot v-if="store.currentSlideType==='question'" name="questionSlot" :data="slideData"></slot>
       
       <template v-if="store.currentSlideType==='result'">
@@ -20,6 +22,10 @@
       <button class="btn-standard" type="button" @click="store.reset()">
         <slot name="playAgainBtn">Play again</slot>
       </button>
+    </div>
+
+    <div v-if="store.currentSlideType==='intro'" class="controls">
+      <button class="btn-standard" type="button" @click="store.triggerHeightCalc=true; store.start()">Start</button>
     </div>
 
     <div v-if="store.currentSlideType==='question'" class="quiz-answers-wrap">
@@ -49,6 +55,7 @@ onMounted(() => {
 
 if (options.nextButton) {
   watch(() => store.waiting, async() => {
+    // console.log("QuizSlide pre-tick height: " + slideEl.value.clientHeight);
     await nextTick();
     if (slideEl.value) { // For some reason this watcher only triggers on store.waiting = true, but when <VueQuiz> is empty (no slots or other content), it triggers on false too, causing a console error
       store.nextSlideHeight = slideEl.value.clientHeight;

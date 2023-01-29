@@ -40,6 +40,7 @@ const correctClass = computed( () => {
 });
 
 const chooseAnswer = (result) => {
+	store.triggerHeightCalc = true;
 	store.processUserAnswer(result);
 
 	// Highlight the incorrect answer only on the clicked button

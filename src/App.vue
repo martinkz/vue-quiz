@@ -1,6 +1,10 @@
 <template>
 	<div class="app-wrap">
 		<VueQuiz :options="{comment: 'Option set at the component level'}">
+			<template #introSlot="{ slotProps }">
+				<h1>{{ slotProps.title }}</h1>
+				<img class="slide-img" :src="slotProps.image" alt="">
+			</template>
 			<template #questionSlot="{ slotProps }">
 				<!-- {{ slotProps }} -->
 				<h1>{{ slotProps.question }}</h1>
@@ -13,7 +17,6 @@
 			<template #playAgainBtn>Play quiz again</template>
 		</VueQuiz>
 	</div>
-
 </template>
 
 <style>

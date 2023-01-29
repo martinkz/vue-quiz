@@ -26,7 +26,6 @@
 <script setup>
 import { ref, watch, onMounted, nextTick } from "vue"
 import QuizSlide from '@/VueQuizPlugin/components/QuizSlide.vue'
-import QuizResult from '@/VueQuizPlugin/components/QuizResult.vue'
 import QuizTimer from '@/VueQuizPlugin/components/QuizTimer.vue'
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore'
 import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore'
@@ -46,23 +45,24 @@ const options = useOptionsStore()
 options.update(props.options)
 
 const height = ref('auto');
+const slideWrapEl = ref(null);
 
 watch(() => store.nextSlideHeight, (newVal) => {
   if (!store.initialLoad) {
-    // console.log('VueQuiz: ' + newVal, store.initialLoad);
+    // console.log('Height change watch: ' + newVal, store.initialLoad);
     height.value = newVal + 'px';
-  }
-})
-
-watch(() => store.waiting, () => {
-  if (store.initialLoad) {
-    store.nextSlideHeight = slideWrapEl.value.clientHeight;
-    // console.log("store.waiting 2: " + store.nextSlideHeight);
-    store.initialLoad = false;
   }
 });
 
-const slideWrapEl = ref(null);
+watch(() => store.triggerHeightCalc, () => {
+  // console.log("triggerHeightCalc: " + store.triggerHeightCalc)
+  if (store.initialLoad && store.triggerHeightCalc) {
+    store.nextSlideHeight = slideWrapEl.value.clientHeight;
+    // console.log("store.waiting from VueQuiz: " + store.nextSlideHeight);
+    store.initialLoad = false;
+    store.triggerHeightCalc = false;
+  }
+});
 
 onMounted(() => {
   onResize();
