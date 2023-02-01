@@ -4,9 +4,9 @@
       <QuizTimer v-if="options.timedQuiz" />
       <div class="progress-bar">
         <label class="sr-only" for="progress">Your progress</label>
-        <progress id="progress" :value="store.currentQuestion" :max="store.numSlides"> {{ store.numSlides / store.currentQuestion }}</progress>
+        <progress id="progress" :value="store.currentQuestion" :max="store.numQuestions"> {{ store.numQuestions / store.currentQuestion }}</progress>
       </div>
-      <div class="status">{{ `${store.currentQuestion} / ${store.numSlides}` }}</div>
+      <div class="status">{{ `${store.currentQuestion} / ${store.numQuestions}` }}</div>
     </header>
     <section ref="slideWrapEl" class="quiz-slide-wrap">
       <Transition name="slide-up">
@@ -30,8 +30,8 @@ import QuizTimer from '@/VueQuizPlugin/components/QuizTimer.vue'
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore'
 import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore'
 
-const store = useQuizStore()
-store.init()
+const store = useQuizStore();
+store.init();
 
 const props = defineProps({
   options: {
@@ -41,8 +41,8 @@ const props = defineProps({
   }
 })
 
-const options = useOptionsStore()
-options.update(props.options)
+const options = useOptionsStore();
+options.update(props.options);
 
 const height = ref('auto');
 const slideWrapEl = ref(null);
@@ -74,7 +74,7 @@ const onResize = () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(updateSlideHeight, 200);
   });
-};
+}
 
 const updateSlideHeight = async () => {
   if (slideWrapEl.value !== null) {

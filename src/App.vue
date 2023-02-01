@@ -1,20 +1,27 @@
 <template>
 	<div class="app-wrap">
 		<VueQuiz :options="{comment: 'Option set at the component level'}">
-			<template #introSlot="{ slotProps }">
-				<h1>{{ slotProps.title }}</h1>
-				<img class="slide-img" :src="slotProps.image" alt="">
+
+			<template #intro="{ slotProps: { title, image } }">
+				<h1>{{ title }}</h1>
+				<img class="slide-img" :src="image" alt="">
 			</template>
-			<template #questionSlot="{ slotProps }">
-				<!-- {{ slotProps }} -->
-				<h1>{{ slotProps.question }}</h1>
-				<img class="slide-img" :src="slotProps.image" alt="">
+
+			<template #question="{ slotProps: { question, image } }">
+				<h1>{{ question }}</h1>
+				<img class="slide-img" :src="image" alt="">
 			</template>
+
 			<template #nextBtn>Next question</template>
-			<template #resultSlot="{ slotProps }">
-				<!-- <h1>Congratulations, you scored {{ slotProps.result }}!</h1> -->
+
+			<template #result="{ slotProps: { type, result } }">
+				<h1 v-if="type==='scored'">Congratulations, you scored {{ result.score }} out of {{ result.scoreMax }}!</h1>
+				<h1 v-if="type==='personality'">{{ result.title }}</h1>
+				<img v-if="type==='personality'" :src="result.image">
 			</template>
+
 			<template #playAgainBtn>Play quiz again</template>
+			
 		</VueQuiz>
 	</div>
 </template>

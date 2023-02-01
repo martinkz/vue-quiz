@@ -33,7 +33,7 @@ export const useQuizStore = defineStore("quizStore", {
 	}),
 
 	getters: {
-		numSlides: (state) => state.quizData.data.length,
+		numQuestions: (state) => state.quizData.data.length,
 		currentQuestionData: (state) => {
 			if (state.currentSlideType === "intro") return state.quizData.intro;
 			if (state.currentSlideType === "question") return state.quizData.data[state.currentQuestion];
@@ -46,7 +46,7 @@ export const useQuizStore = defineStore("quizStore", {
 
 	actions: {
 		async init() {
-			this.quizData = (await import("@/quiz1.json")).default;
+			this.quizData = (await import("@/quiz2.json")).default;
 
 			if (this.quizData.type === "personality") {
 				this.personalityScores.length = this.quizData.data.length;
@@ -71,7 +71,7 @@ export const useQuizStore = defineStore("quizStore", {
 			this.updateScore(this.tempScore);
 			this.waiting = false;
 			this.currentQuestion++;
-			if (this.currentQuestion >= this.numSlides) {
+			if (this.currentQuestion >= this.numQuestions) {
 				this.showResult = true;
 				this.timerActive = false;
 				this.currentSlideType = "result";
@@ -106,7 +106,10 @@ export const useQuizStore = defineStore("quizStore", {
 				const resultIdx = getMaxPersonalityIdx(this.personalityScores);
 				result = this.quizData.results[resultIdx];
 			} else if (this.quizData.type === "scored") {
-				result = this.score;
+				result = {
+					score: this.score,
+					scoreMax: this.numQuestions
+				};
 			}
 			return {
 				type: this.quizData.type,
