@@ -1,7 +1,11 @@
 <template>
 	<div class="app-wrap">
-		<VueQuiz :options="{comment: 'Option set at the component level'}">
-
+		<div style="display:flex; align-items: flex-start; gap: 30px">
+		<VueQuiz :options="{
+			comment: 'Option set at the component level',
+			nextButton: true,
+			revealAnswer: true,
+		}">
 			<template #intro="{ slotProps: { title, image } }">
 				<h1>{{ title }}</h1>
 				<img class="slide-img" :src="image" alt="">
@@ -21,8 +25,10 @@
 			</template>
 
 			<template #playAgainBtn>Play quiz again</template>
-			
 		</VueQuiz>
+
+		<VueQuiz />
+		</div>
 	</div>
 </template>
 
@@ -55,7 +61,8 @@ body {
 	padding: 10px;
 	margin: 0 auto;
 	display: grid;
-	max-width: 820px;
+	/* max-width: 820px; */
+	max-width: 1220px;
 	min-height: 100vh;
 	place-items: center;
 }

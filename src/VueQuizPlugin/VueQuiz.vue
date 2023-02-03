@@ -24,13 +24,17 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, nextTick } from "vue"
+import { ref, watch, onMounted, nextTick, provide } from "vue"
 import QuizSlide from '@/VueQuizPlugin/components/QuizSlide.vue'
 import QuizTimer from '@/VueQuizPlugin/components/QuizTimer.vue'
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore'
 import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore'
+import { v4 } from "uuid";
 
-const store = useQuizStore();
+const componentId = v4();
+provide('componentId', componentId);
+
+const store = useQuizStore(componentId);
 store.init();
 
 const props = defineProps({

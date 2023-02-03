@@ -5,11 +5,12 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, inject } from "vue";
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
 import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore'
 
-const store = useQuizStore();
+const componentId = inject('componentId');
+const store = useQuizStore(componentId);
 const options = useOptionsStore()
 
 const time = ref(formatTime(options.timer));

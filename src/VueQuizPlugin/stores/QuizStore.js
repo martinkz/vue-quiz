@@ -15,7 +15,7 @@ const getMaxPersonalityIdx = (scores) => {
 	return indexes[randomIdx];
 };
 
-export const useQuizStore = defineStore("quizStore", {
+export const useQuizStore = (id) => defineStore(id, {
 	state: () => ({
 		quizData: [],
 		currentQuestion: 0,
@@ -133,7 +133,7 @@ export const useQuizStore = defineStore("quizStore", {
 			this.currentSlideType = "question";
 		},
 	},
-});
+})();
 
 if (import.meta.hot) {
 	import.meta.hot.accept(acceptHMRUpdate(useQuizStore, import.meta.hot));

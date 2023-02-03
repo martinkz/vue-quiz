@@ -47,12 +47,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, nextTick } from "vue";
+import { ref, onMounted, watch, nextTick, inject } from "vue";
 import QuizQuestionAnswerBtn from '@/VueQuizPlugin/components/QuizQuestionAnswerBtn.vue';
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
 import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore';
 
-const store = useQuizStore();
+const componentId = inject('componentId');
+const store = useQuizStore(componentId);
 const options = useOptionsStore();
 const slideEl = ref(null);
 

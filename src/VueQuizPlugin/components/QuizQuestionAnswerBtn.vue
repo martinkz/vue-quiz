@@ -1,14 +1,14 @@
 <template>
   <input
-		:id="`answer-${store.currentQuestion}-${index}`"
-		:name="`answer${store.currentQuestion}`"
+		:id="`answer-${store.currentQuestion}-${index}-${componentId}`"
+		:name="`answer${store.currentQuestion}-${componentId}`"
 		type="radio"
 		:value="item.answer"
 		:disabled="store.waiting && store.isScored && (options.revealAnswer || !options.nextBtn)"
 		class="sr-only"
 		@change="chooseAnswer(item.result)">
 	<label 
-		:for="`answer-${store.currentQuestion}-${index}`"
+		:for="`answer-${store.currentQuestion}-${index}-${componentId}`"
 		class="quiz-answer-btn"
 		:class="correctClass + incorrectClass">
 		{{ item.answer }}
@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, inject } from "vue";
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
 import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore';
 const props = defineProps({
@@ -30,7 +30,8 @@ const props = defineProps({
 	}
 })
 
-const store = useQuizStore();
+const componentId = inject('componentId');
+const store = useQuizStore(componentId);
 const options = useOptionsStore();
 const incorrectClass = ref('');
 
