@@ -7,11 +7,10 @@
 <script setup>
 import { ref, watch, inject } from "vue";
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
-import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore'
 
 const componentId = inject('componentId');
 const store = useQuizStore(componentId);
-const options = useOptionsStore()
+const options = inject('componentOptions');
 
 const time = ref(formatTime(options.timer));
 let timerInterval;

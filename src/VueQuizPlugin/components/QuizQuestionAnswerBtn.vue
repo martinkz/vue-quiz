@@ -18,7 +18,6 @@
 <script setup>
 import { ref, computed, inject } from "vue";
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore';
-import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore';
 const props = defineProps({
 	item: {
 		type: Object,
@@ -32,7 +31,7 @@ const props = defineProps({
 
 const componentId = inject('componentId');
 const store = useQuizStore(componentId);
-const options = useOptionsStore();
+const options = inject('componentOptions');
 const incorrectClass = ref('');
 
 // Always show the correct answer
@@ -42,7 +41,7 @@ const correctClass = computed( () => {
 
 const chooseAnswer = (result) => {
 	store.triggerHeightCalc = true;
-	store.processUserAnswer(result);
+	store.processUserAnswer(result, options);
 
 	// Highlight the incorrect answer only on the clicked button
 	if (store.isScored && options.revealAnswer && result === '0') {

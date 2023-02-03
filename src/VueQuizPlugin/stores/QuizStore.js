@@ -1,5 +1,4 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
-import { useOptionsStore } from "@/VueQuizPlugin/stores/OptionsStore";
 
 const getMaxPersonalityIdx = (scores) => {
 	const max = Math.max(...scores);
@@ -78,10 +77,9 @@ export const useQuizStore = (id) => defineStore(id, {
 			}
 		},
 
-		processUserAnswer(newVal) {
+		processUserAnswer(newVal, options) {
 			this.tempScore = newVal;
 			if (!this.waiting) {
-				const options = useOptionsStore();
 				this.waiting = true;
 
 				if (!options.nextButton) {

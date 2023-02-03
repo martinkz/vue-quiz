@@ -1,11 +1,7 @@
 <template>
 	<div class="app-wrap">
 		<div style="display:flex; align-items: flex-start; gap: 30px">
-		<VueQuiz :options="{
-			comment: 'Option set at the component level',
-			nextButton: true,
-			revealAnswer: true,
-		}">
+		<VueQuiz :options="{ nextButton: true, revealAnswer: true, timer: 300 }">
 			<template #intro="{ slotProps: { title, image } }">
 				<h1>{{ title }}</h1>
 				<img class="slide-img" :src="image" alt="">

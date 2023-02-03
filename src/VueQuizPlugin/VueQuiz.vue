@@ -24,15 +24,20 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, nextTick, provide } from "vue"
+import { ref, watch, onMounted, nextTick, provide, inject } from "vue"
 import QuizSlide from '@/VueQuizPlugin/components/QuizSlide.vue'
 import QuizTimer from '@/VueQuizPlugin/components/QuizTimer.vue'
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore'
-import { useOptionsStore } from '@/VueQuizPlugin/stores/OptionsStore'
 import { v4 } from "uuid";
 
 const componentId = v4();
 provide('componentId', componentId);
+
+const options = {
+  ...inject('pluginUseOptions'),
+  ...props.options
+};
+provide('componentOptions', options);
 
 const store = useQuizStore(componentId);
 store.init();
@@ -43,10 +48,7 @@ const props = defineProps({
     required: false,
     default: () => ({})
   }
-})
-
-const options = useOptionsStore();
-options.update(props.options);
+});
 
 const height = ref('auto');
 const slideWrapEl = ref(null);
