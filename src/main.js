@@ -6,6 +6,5 @@ const app = createApp(App);
 
 app.use(VueQuizPlugin, {
 	nextButton: true,
-	revealAnswer: false,
 });
 app.mount("#app");

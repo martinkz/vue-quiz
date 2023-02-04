@@ -10,6 +10,7 @@ const defaultOptions = {
 	timedQuiz: true,
 	timer: 600,
 	imageAspectRatio: "3 / 2",
+	file: "quiz2.json",
 };
 
 export function VueQuizPlugin(app, options) {

@@ -40,7 +40,7 @@ const options = {
 provide('componentOptions', options);
 
 const store = useQuizStore(componentId);
-store.init();
+store.init(options);
 
 const props = defineProps({
   options: {

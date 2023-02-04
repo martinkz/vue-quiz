@@ -1,7 +1,7 @@
 <template>
 	<div class="app-wrap">
 		<div style="display:flex; align-items: flex-start; gap: 30px">
-		<VueQuiz :options="{ nextButton: true, revealAnswer: true, timer: 300 }">
+		<VueQuiz :options="{ file: 'quiz1.json', nextButton: true, revealAnswer: false, timer: 300 }">
 			<template #intro="{ slotProps: { title, image } }">
 				<h1>{{ title }}</h1>
 				<img class="slide-img" :src="image" alt="">
@@ -17,7 +17,7 @@
 			<template #result="{ slotProps: { type, result } }">
 				<h1 v-if="type==='scored'">Congratulations, you scored {{ result.score }} out of {{ result.scoreMax }}!</h1>
 				<h1 v-if="type==='personality'">{{ result.title }}</h1>
-				<img v-if="type==='personality'" :src="result.image">
+				<img v-if="type==='personality'" class="slide-img" :src="result.image">
 			</template>
 
 			<template #playAgainBtn>Play quiz again</template>

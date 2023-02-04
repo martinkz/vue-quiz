@@ -44,8 +44,12 @@ export const useQuizStore = (id) => defineStore(id, {
 	},
 
 	actions: {
-		async init() {
-			this.quizData = (await import("@/quiz2.json")).default;
+		async init(options) {
+			await fetch(`/${options.file}`)
+				.then((response) => response.json())
+				.then((data) => {
+					this.quizData = data;
+				});
 
 			if (this.quizData.type === "personality") {
 				this.personalityScores.length = this.quizData.data.length;
