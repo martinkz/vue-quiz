@@ -112,7 +112,8 @@ const updateSlideHeight = async () => {
 }
 
 .quiz-slide {
-  width: 100%;
+  width: 600px;
+  max-width: 100%;
   grid-row: 1;
   grid-column: 1;
   /* overflow: hidden; */
