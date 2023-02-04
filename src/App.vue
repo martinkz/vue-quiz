@@ -1,7 +1,7 @@
 <template>
 	<div class="app-wrap">
 		<div style="display:flex; align-items: flex-start; gap: 30px">
-		<VueQuiz :options="{ file: 'quiz1.json', nextButton: true, revealAnswer: false, timer: 300 }">
+		<VueQuiz :options="{ file: 'quiz2.json', nextButton: true, revealAnswer: true, timer: 300 }">
 			<template #intro="{ slotProps: { title, image } }">
 				<h1>{{ title }}</h1>
 				<img class="slide-img" :src="image" alt="">
@@ -23,7 +23,7 @@
 			<template #playAgainBtn>Play quiz again</template>
 		</VueQuiz>
 
-		<VueQuiz />
+		<VueQuiz :options="{ file: 'quiz2.json', nextButton: true, revealAnswer: false }" />
 		</div>
 	</div>
 </template>

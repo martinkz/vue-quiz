@@ -4,7 +4,7 @@
 		:name="`answer${store.currentQuestion}-${componentId}`"
 		type="radio"
 		:value="item.answer"
-		:disabled="store.waiting && store.isScored && (options.revealAnswer || !options.nextBtn)"
+		:disabled="store.waiting && store.isScored && options.revealAnswer "
 		class="sr-only"
 		@change="chooseAnswer(item.result)">
 	<label 
@@ -48,7 +48,6 @@ const chooseAnswer = (result) => {
 		incorrectClass.value = 'incorrect';
 	}
 }
-
 
 </script>
 
