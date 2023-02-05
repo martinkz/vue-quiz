@@ -29,17 +29,17 @@
     </div>
 
     <div v-if="store.currentSlideType==='intro'" class="controls">
-      <button class="btn-standard" type="button" @click="store.triggerHeightCalc=true; store.start()">Start</button>
+      <button class="quiz-btn-standard" type="button" @click="store.triggerHeightCalc=true; store.start()">Start</button>
     </div>
 
     <div v-if="store.currentSlideType === 'question' && options.nextButton" v-show="store.waiting" class="controls">
-      <button class="btn-standard" type="button" @click="store.nextStep()">
+      <button class="quiz-btn-standard" type="button" @click="store.nextStep()">
         <slot name="nextBtn">Next</slot>
       </button>
     </div>
 
     <div v-if="store.currentSlideType==='result'" class="controls">
-      <button class="btn-standard" type="button" @click="store.reset()">
+      <button class="quiz-btn-standard" type="button" @click="store.reset()">
         <slot name="playAgainBtn">Play again</slot>
       </button>
     </div>

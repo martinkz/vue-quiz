@@ -1,18 +1,13 @@
 <template>
-  <input
+	<button 
 		:id="`answer-${store.currentQuestion}-${index}-${componentId}`"
-		:name="`answer${store.currentQuestion}-${componentId}`"
-		type="radio"
-		:value="item.answer"
-		:disabled="store.waiting && store.isScored && options.revealAnswer "
-		class="sr-only"
-		@change="chooseAnswer(item.result)">
-	<label 
-		:for="`answer-${store.currentQuestion}-${index}-${componentId}`"
 		class="quiz-answer-btn"
-		:class="correctClass + incorrectClass">
+		:disabled="store.waiting && store.isScored && options.revealAnswer"
+		:class="`${selectedClass} ${correctClass} ${incorrectClass}`"
+		@click="chooseAnswer(item.result)"
+		>
 		{{ item.answer }}
-	</label>
+	</button>
 </template>
 
 <script setup>
@@ -39,8 +34,13 @@ const correctClass = computed( () => {
 	return options.revealAnswer && store.waiting && store.isScored && props.item.result === '1' ? 'correct' : ''
 });
 
+const selectedClass = computed(() => {
+	return store.waiting && props.index === store.currentAnswer ? 'selected' : '';
+});
+
 const chooseAnswer = (result) => {
 	store.triggerHeightCalc = true;
+	store.currentAnswer = props.index;
 	store.processUserAnswer(result, options);
 
 	// Highlight the incorrect answer only on the clicked button
@@ -54,10 +54,9 @@ const chooseAnswer = (result) => {
 <style scoped>
 .quiz-answer-btn {
 	display: block;
-	/* background: #392e83; */
+	width: 100%;
 	background: #413d3a;
 	color: white;
-	/* border-radius: 8px; */
 	border: 1px solid transparent;
 	padding: 1rem 4rem;
 	font-size: 1em;
@@ -67,26 +66,22 @@ const chooseAnswer = (result) => {
 	transition: all 0.25s;
 }
 
-.quiz-answer-btn + input + .quiz-answer-btn {
+.quiz-answer-btn + .quiz-answer-btn {
 	border-top: 1px solid #5e5c59;
 }
 
-input[type="radio"]:not(:disabled) + .quiz-answer-btn:hover {
-	background: #40aec7;
-}
-
+.quiz-answer-btn:where(:not(:disabled):hover),
 .quiz-answer-btn:focus,
 .quiz-answer-btn:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
+	background: #356f7c;
 }
-input[type="radio"]:checked + label {
+.quiz-answer-btn.selected {
 	background: #40aec7;
 }
-input[type="radio"] + label.correct {
-	background: #35a150;
+.quiz-answer-btn.correct {
+	background: #4d7e55;
 }
-
-input[type="radio"] + label.incorrect {
-	background: #b33d3d;
+.quiz-answer-btn.incorrect {
+	background: #934343;
 }
 </style>

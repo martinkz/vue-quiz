@@ -1,6 +1,3 @@
-Check why personality quiz calculates score
 Fix slide count and progress bar
-Remove next button transition from quizquestion as it's not needed
-Combine intro/question/result slides into QuizSlide
 Expose some store props via slot (e.g. currentQuestion)
 Explore slots for questions with various types of content (e.g. text box) or <component is="">?

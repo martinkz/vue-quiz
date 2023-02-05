@@ -19,6 +19,7 @@ export const useQuizStore = (id) => defineStore(id, {
 		quizData: [],
 		currentQuestion: 0,
 		currentSlideType: "question",
+		currentAnswer: undefined,
 		showResult: false,
 		score: 0,
 		personalityScores: [],

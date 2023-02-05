@@ -60,7 +60,7 @@ img {
   width: 100%;
 }
 
-.btn-standard {
+.quiz-btn-standard {
   all: unset;
   display: block;
   box-sizing: border-box;
@@ -73,18 +73,9 @@ img {
   text-transform: uppercase;
 }
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
+.quiz-btn-standard:focus-visible {
+  background: #766c55;
+}
 
 .sr-only {
   position:absolute;
