@@ -56,20 +56,23 @@ const store = useQuizStore(componentId);
 const options = inject('componentOptions');
 const slideEl = ref(null);
 
-onMounted(() => {
-  store.nextSlideHeight = slideEl.value.clientHeight;
-});
-
-if (options.nextButton) {
-  watch(() => store.waiting, async() => {
-    // console.log("QuizSlide pre-tick height: " + slideEl.value.clientHeight);
-    await nextTick();
-    if (slideEl.value) { // For some reason this watcher only triggers on store.waiting = true, but when <VueQuiz> is empty (no slots or other content), it triggers on false too, causing a console error
-      store.nextSlideHeight = slideEl.value.clientHeight;
-      // console.log("QuizSlide store.waiting: " + store.nextSlideHeight);
-    }
+if (options.animation) {
+  onMounted(() => {
+    store.nextSlideHeight = slideEl.value.clientHeight;
   });
+
+  if (options.nextButton) {
+    watch(() => store.waiting, async () => {
+      // console.log("QuizSlide pre-tick height: " + slideEl.value.clientHeight);
+      await nextTick();
+      if (slideEl.value) { // For some reason this watcher only triggers on store.waiting = true, but when <VueQuiz> is empty (no slots or other content), it triggers on false too, causing a console error
+        store.nextSlideHeight = slideEl.value.clientHeight;
+        // console.log("QuizSlide store.waiting: " + store.nextSlideHeight);
+      }
+    });
+  }
 }
+
 
 defineProps({
   slideData: {

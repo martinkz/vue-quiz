@@ -9,7 +9,7 @@
       <div class="status">{{ `${store.currentQuestion} / ${store.numQuestions}` }}</div>
     </header>
     <section ref="slideWrapEl" class="quiz-slide-wrap">
-      <Transition name="slide-up">
+      <Transition :name="slideTransition">
         <QuizSlide 
         :key="store.currentQuestionData" 
         :slide-data="store.currentQuestionData" 
@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, nextTick, provide, inject } from "vue"
+import { ref, watch, computed, onMounted, nextTick, provide, inject } from "vue"
 import QuizSlide from '@/VueQuizPlugin/components/QuizSlide.vue'
 import QuizTimer from '@/VueQuizPlugin/components/QuizTimer.vue'
 import { useQuizStore } from '@/VueQuizPlugin/stores/QuizStore'
@@ -50,47 +50,52 @@ const props = defineProps({
   }
 });
 
-const height = ref('auto');
+const slideTransition = computed(() => {
+  return options.animation ? 'quiz-animation' : '';
+});
+
 const slideWrapEl = ref(null);
+const height = ref('auto');
 
-watch(() => store.nextSlideHeight, (newVal) => {
-  if (!store.initialLoad) {
-    // console.log('Height change watch: ' + newVal, store.initialLoad);
-    height.value = newVal + 'px';
-  }
-});
+if (options.animation) {
+  watch(() => store.nextSlideHeight, (newVal) => {
+    if (!store.initialLoad) {
+      // console.log('Height change watch: ' + newVal, store.initialLoad);
+      height.value = newVal + 'px';
+    }
+  });
 
-watch(() => store.triggerHeightCalc, () => {
-  // console.log("triggerHeightCalc: " + store.triggerHeightCalc)
-  if (store.initialLoad && store.triggerHeightCalc) {
-    store.nextSlideHeight = slideWrapEl.value.clientHeight;
-    // console.log("store.waiting from VueQuiz: " + store.nextSlideHeight);
-    store.initialLoad = false;
-    store.triggerHeightCalc = false;
-  }
-});
+  watch(() => store.triggerHeightCalc, () => {
+    // console.log("triggerHeightCalc: " + store.triggerHeightCalc)
+    if (store.initialLoad && store.triggerHeightCalc) {
+      store.nextSlideHeight = slideWrapEl.value.clientHeight;
+      // console.log("store.waiting from VueQuiz: " + store.nextSlideHeight);
+      store.initialLoad = false;
+      store.triggerHeightCalc = false;
+    }
+  });
 
-onMounted(() => {
-  onResize();
-});
+  onMounted(() => {
+    onResize();
+  });
 
-const onResize = () => {
-  let resizeTimer;
-  window.addEventListener('resize', () => {
+  const onResize = () => {
+    let resizeTimer;
+    window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(updateSlideHeight, 200);
-  });
-}
+    });
+  };
 
-const updateSlideHeight = async () => {
-  if (slideWrapEl.value !== null) {
-    height.value = 'auto';
-    await nextTick(); // Might not be needed?
-    store.nextSlideHeight = slideWrapEl.value.clientHeight;
-    store.initialLoad = false;
+  const updateSlideHeight = async () => {
+    if (slideWrapEl.value !== null) {
+      height.value = 'auto';
+      await nextTick(); // Might not be needed?
+      store.nextSlideHeight = slideWrapEl.value.clientHeight;
+      store.initialLoad = false;
+    }
   }
 }
-
 </script>
 
 <style scoped>
@@ -108,7 +113,6 @@ const updateSlideHeight = async () => {
   text-align: center;
   transition: all 0.4s linear;
   height: v-bind(height);
-  /* overflow: hidden; */
 }
 
 .quiz-slide {
@@ -116,19 +120,19 @@ const updateSlideHeight = async () => {
   max-width: 100%;
   grid-row: 1;
   grid-column: 1;
-  /* overflow: hidden; */
 }
-.slide-up-enter-active,
-.slide-up-leave-active {
+
+.quiz-animation-enter-active,
+.quiz-animation-leave-active {
   transition: opacity 0.4s linear;
   
 }
-.slide-up-enter-from,
-.slide-up-leave-to {
+.quiz-animation-enter-from,
+.quiz-animation-leave-to {
   opacity: 0;
 }
-.slide-up-enter-to,
-.slide-up-leave-from {
+.quiz-animation-enter-to,
+.quiz-animation-leave-from {
   opacity: 1;
 }
 

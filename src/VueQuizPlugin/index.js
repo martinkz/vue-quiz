@@ -9,6 +9,7 @@ const defaultOptions = {
 	revealAnswer: true,
 	timedQuiz: true,
 	timer: 600,
+	animation: true,
 	imageAspectRatio: "3 / 2",
 	file: "quiz2.json",
 };
