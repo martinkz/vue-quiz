@@ -18,6 +18,7 @@ export const useQuizStore = (id) => defineStore(id, {
 	state: () => ({
 		quizData: [],
 		currentQuestion: 0,
+		progressBarValue: 0,
 		currentSlideType: "question",
 		currentAnswer: undefined,
 		showResult: false,
@@ -36,7 +37,7 @@ export const useQuizStore = (id) => defineStore(id, {
 		numQuestions: (state) => state.quizData.data.length,
 		currentQuestionData: (state) => {
 			if (state.currentSlideType === "intro") return state.quizData.intro;
-			if (state.currentSlideType === "question") return state.quizData.data[state.currentQuestion];
+			if (state.currentSlideType === "question") return state.quizData.data[state.currentQuestion-1];
 			if (state.currentSlideType === "result") return state.getResultItem();
 		},
 		introData: (state) => state.quizData.intro,
@@ -69,16 +70,20 @@ export const useQuizStore = (id) => defineStore(id, {
 		start() {
 			this.timerActive = true;
 			this.currentSlideType = "question";
+			this.currentQuestion++;
+			this.progressBarValue++;
 		},
 
 		nextStep() {
 			this.updateScore(this.tempScore);
 			this.waiting = false;
-			this.currentQuestion++;
-			if (this.currentQuestion >= this.numQuestions) {
+			this.progressBarValue++;
+			if (this.currentQuestion === this.numQuestions) {
 				this.showResult = true;
 				this.timerActive = false;
 				this.currentSlideType = "result";
+			} else {
+				this.currentQuestion++;
 			}
 		},
 
@@ -128,7 +133,8 @@ export const useQuizStore = (id) => defineStore(id, {
 		},
 
 		reset() {
-			this.currentQuestion = 0;
+			this.currentQuestion = 1;
+			this.progressBarValue = 1;
 			this.showResult = false;
 			this.score = 0;
 			this.personalityScores.fill(0);

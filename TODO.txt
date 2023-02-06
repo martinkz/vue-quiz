@@ -1,3 +1,2 @@
-Fix slide count and progress bar
 Expose some store props via slot (e.g. currentQuestion)
 Explore slots for questions with various types of content (e.g. text box) or <component is="">?

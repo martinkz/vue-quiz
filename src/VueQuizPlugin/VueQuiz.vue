@@ -4,7 +4,7 @@
       <QuizTimer v-if="options.timedQuiz" />
       <div class="progress-bar">
         <label class="sr-only" for="progress">Your progress</label>
-        <progress id="progress" :value="store.currentQuestion" :max="store.numQuestions"> {{ store.numQuestions / store.currentQuestion }}</progress>
+        <progress id="progress" :value="store.progressBarValue" :max="store.numQuestions+1"> {{ store.numQuestions / store.currentQuestion }}</progress>
       </div>
       <div class="status">{{ `${store.currentQuestion} / ${store.numQuestions}` }}</div>
     </header>
