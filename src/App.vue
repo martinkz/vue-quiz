@@ -2,37 +2,40 @@
 	<div class="app-wrap">
 		<div style="display:flex; align-items: flex-start; gap: 30px">
 			<VueQuiz :options="{ file: 'quiz1.json', nextButton: true, revealAnswer: false, timedQuiz: false	}">
-			<template #intro="{ slotProps: { title, image, text } }">
-				<div class="quiz-copy-wrap">
-					<h2 class="quiz-slide-title">{{ title }}</h2>
-					<p v-if="text">{{ text }}</p>
-				</div>
-				<img class="quiz-slide-img" :src="image" alt="">
-			</template>
+				<template #currentStatus="{ status: { currentQuestion, max } }">
+					Question {{ currentQuestion }} of {{ max }}
+				</template>
+				<template #intro="{ slotProps: { title, image, text } }">
+					<div class="quiz-copy-wrap">
+						<h2 class="quiz-slide-title">{{ title }}</h2>
+						<p v-if="text">{{ text }}</p>
+					</div>
+					<img class="quiz-slide-img" :src="image" alt="">
+				</template>
 
-			<template #question="{ slotProps: { question, image, text } }">
-				<div class="quiz-copy-wrap">
-					<h2 class="quiz-slide-title">{{ question }}</h2>
-					<p v-if="text">{{ text }}</p>
-				</div>
-				<img class="quiz-slide-img" :src="image" alt="">
-			</template>
+				<template #question="{ slotProps: { question, image, text } }">
+					<div class="quiz-copy-wrap">
+						<h2 class="quiz-slide-title">{{ question }}</h2>
+						<p v-if="text">{{ text }}</p>
+					</div>
+					<img class="quiz-slide-img" :src="image" alt="">
+				</template>
 
-			<template #nextBtn>Next question</template>
+				<template #nextBtn>Next question</template>
 
-			<template #result="{ slotProps: { type, result } }">
-				<div class="quiz-copy-wrap">
-					<h2 v-if="type==='scored'" class="quiz-slide-title">Congratulations, you scored {{ result.score }} out of {{ result.scoreMax }}!</h2>
-					<h2 v-if="type==='personality'" class="quiz-slide-title">{{ result.title }}</h2>
-					<p v-if="result.text">{{ result.text }}</p>
-				</div>
-				<img v-if="type==='personality'" class="quiz-slide-img" :src="result.image">
-			</template>
+				<template #result="{ slotProps: { type, result } }">
+					<div class="quiz-copy-wrap">
+						<h2 v-if="type==='scored'" class="quiz-slide-title">Congratulations, you scored {{ result.score }} out of {{ result.scoreMax }}!</h2>
+						<h2 v-if="type==='personality'" class="quiz-slide-title">{{ result.title }}</h2>
+						<p v-if="result.text">{{ result.text }}</p>
+					</div>
+					<img v-if="type==='personality'" class="quiz-slide-img" :src="result.image">
+				</template>
 
-			<template #playAgainBtn>Play quiz again</template>
-		</VueQuiz>
+				<template #playAgainBtn>Play quiz again</template>
+			</VueQuiz>
 
-		<VueQuiz :options="{ file: 'quiz1.json', nextButton: true, revealAnswer: true, timedQuiz: false }" />
+		<VueQuiz :options="{ file: 'quiz2.json', nextButton: true, revealAnswer: true, timedQuiz: true }" />
 		</div>
 	</div>
 </template>

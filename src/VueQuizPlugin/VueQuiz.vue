@@ -6,7 +6,9 @@
         <label class="sr-only" for="progress">Your progress</label>
         <progress class="quiz-progress" :value="store.progressBarValue" :max="store.numQuestions+1"> {{ store.numQuestions / store.currentQuestion }}</progress>
       </div>
-      <div class="status">{{ `${store.currentQuestion} / ${store.numQuestions}` }}</div>
+      <div v-if="store.currentQuestion > 0" class="quiz-status">
+        <slot name="currentStatus" :status="{ 'currentQuestion': store.currentQuestion, 'max': store.numQuestions }">{{ `${store.currentQuestion} / ${store.numQuestions}` }}</slot>
+      </div>
     </header>
     <section ref="slideWrapEl" class="quiz-slide-wrap">
       <Transition :name="slideTransition">
