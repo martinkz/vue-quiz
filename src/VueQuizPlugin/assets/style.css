@@ -88,6 +88,18 @@
   background: #40aec7;
 }
 
+.quiz-copy-wrap {
+  padding: 2rem;
+}
+
+.quiz-copy-wrap > * {
+  margin: 0;
+}
+
+.quiz-copy-wrap > * + * {
+  margin-top: 1.5rem;
+}
+
 .quiz-slide-title {
   /* font-family: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol; */
   font-family: var(--title-font), serif;

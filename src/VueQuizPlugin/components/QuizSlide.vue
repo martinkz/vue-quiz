@@ -2,12 +2,18 @@
   <div ref="slideEl">
     <section class="slide-header">
       <slot v-if="store.currentSlideType==='intro'" name="intro" :data="slideData">
-        <h3 v-if="slideData.title" class="quiz-slide-title">{{ slideData.title }}</h3>
+        <div class="quiz-copy-wrap">
+          <h3 v-if="slideData.title" class="quiz-slide-title">{{ slideData.title }}</h3>
+          <p v-if="slideData.text">{{ slideData.text }}</p>
+        </div>
         <img v-if="slideData.image" class="quiz-slide-img" :src="slideData.image" alt="">
       </slot>
       
       <slot v-if="store.currentSlideType==='question'" name="question" :data="slideData">
-        <h3 v-if="slideData.question" class="quiz-slide-title">{{ slideData.question }}</h3>
+        <div class="quiz-copy-wrap">
+          <h3 v-if="slideData.question" class="quiz-slide-title">{{ slideData.question }}</h3>
+          <p v-if="slideData.text">{{ slideData.text }}</p>
+        </div> 
         <img v-if="slideData.image" class="quiz-slide-img" :src="slideData.image" alt="">
       </slot>
       
@@ -15,10 +21,15 @@
         <slot name="result" :data="{ type, result } = slideData">
           <template v-if="type === 'personality'">
             <img v-if="result.image" class="quiz-slide-img" :src="result.image" alt="">
-            <h3 v-if="result.title" class="quiz-slide-title">{{ result.title }}</h3>
+            <div class="quiz-copy-wrap">
+              <h3 v-if="result.title" class="quiz-slide-title">{{ result.title }}</h3>
+              <p v-if="result.text">{{ result.text }}</p>
+            </div>
           </template>
           <template v-else-if="type === 'scored'">
-            <h3 class="quiz-slide-title">Congratulations, you scored {{ result.score }}!</h3>
+            <div class="quiz-copy-wrap">
+              <h3 class="quiz-slide-title">Congratulations, you scored {{ result.score }}!</h3>
+            </div>
           </template>
         </slot>
       </template>
