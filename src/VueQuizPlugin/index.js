@@ -1,6 +1,5 @@
 import VueQuiz from "./VueQuiz.vue";
 import { createPinia } from "pinia";
-import "./assets/style.css";
 
 const pinia = createPinia();
 

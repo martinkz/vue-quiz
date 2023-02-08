@@ -1,23 +1,23 @@
 <template>
 	<div class="app-wrap">
 		<div style="display:flex; align-items: flex-start; gap: 30px">
-		<VueQuiz :options="{ file: 'quiz1.json', nextButton: true, revealAnswer: true, timer: 300 }">
+			<VueQuiz :options="{ file: 'quiz2.json', nextButton: true, revealAnswer: false, timer: 300 }">
 			<template #intro="{ slotProps: { title, image } }">
-				<h1>{{ title }}</h1>
-				<img class="slide-img" :src="image" alt="">
+				<h2 class="quiz-slide-title">{{ title }}</h2>
+				<img class="quiz-slide-img" :src="image" alt="">
 			</template>
 
 			<template #question="{ slotProps: { question, image } }">
-				<h1>{{ question }}</h1>
-				<img class="slide-img" :src="image" alt="">
+				<h2 class="quiz-slide-title">{{ question }}</h2>
+				<img class="quiz-slide-img" :src="image" alt="">
 			</template>
 
 			<template #nextBtn>Next question</template>
 
 			<template #result="{ slotProps: { type, result } }">
-				<h1 v-if="type==='scored'">Congratulations, you scored {{ result.score }} out of {{ result.scoreMax }}!</h1>
-				<h1 v-if="type==='personality'">{{ result.title }}</h1>
-				<img v-if="type==='personality'" class="slide-img" :src="result.image">
+				<h2 v-if="type==='scored'" class="quiz-slide-title">Congratulations, you scored {{ result.score }} out of {{ result.scoreMax }}!</h2>
+				<h2 v-if="type==='personality'" class="quiz-slide-title">{{ result.title }}</h2>
+				<img v-if="type==='personality'" class="quiz-slide-img" :src="result.image">
 			</template>
 
 			<template #playAgainBtn>Play quiz again</template>
@@ -30,17 +30,26 @@
 
 <style>
 @keyframes background-shift {
-	0% {
-		background-position: 0% 50%;
-	}
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%;	}
+}
 
-	50% {
-		background-position: 100% 50%;
-	}
+:root {
+	color-scheme: light dark;
+	color: rgba(255, 255, 255, 0.87);
+	background-color: #242424;
+}
 
-	100% {
-		background-position: 0% 50%;
-	}
+html,
+body {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
 }
 
 body {
@@ -58,7 +67,7 @@ body {
 	margin: 0 auto;
 	display: grid;
 	/* max-width: 820px; */
-	max-width: 1220px;
+	/* max-width: 1220px; */
 	min-height: 100vh;
 	place-items: center;
 }
