@@ -1,4 +1,4 @@
-Explore slots for questions with various types of content (e.g. text box) or <component is="">?
 Reasses the aspect-ratio option
 Load json file from local path or url
 Add checkmark / X icons for correct / incorrect answers
+Add real quiz data

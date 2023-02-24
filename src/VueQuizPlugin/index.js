@@ -13,7 +13,7 @@ const defaultOptions = {
 	file: "quiz2.json",
 };
 
-export function VueQuizPlugin(app, options) {
+export default function(app, options) {
 	options = {
 		...defaultOptions,
 		...options,

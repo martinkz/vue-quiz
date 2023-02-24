@@ -4,12 +4,16 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	define: {
+		'process.env': process.env
+	},
 	build: {
 		lib: {
 			entry: path.resolve(__dirname, "src/VueQuizPlugin/index.js"),
 			name: "VueQuiz",
 			// the proper extensions will be added
 			fileName: "vue-quiz",
+			formats: ["es", "umd", "iife"],
 		},
 		rollupOptions: {
 			// make sure to externalize deps that shouldn't be bundled

@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import { VueQuizPlugin } from "@/VueQuizPlugin";
+import VueQuizPlugin from "@/VueQuizPlugin";
 
 const app = createApp(App);
 
