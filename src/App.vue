@@ -1,7 +1,7 @@
 <template>
 	<div class="app-wrap">
 		<div style="display:flex; align-items: flex-start; gap: 30px">
-			<VueQuiz :options="{ file: 'quiz1.json', nextButton: true, revealAnswer: false, timedQuiz: false	}">
+			<VueQuiz :options="{ file: '../quizzes/quiz1.json', nextButton: true, revealAnswer: false, timedQuiz: false	}">
 				<template #currentStatus="{ status: { currentQuestion, max } }">
 					Question {{ currentQuestion }} of {{ max }}
 				</template>
@@ -35,7 +35,7 @@
 				<template #playAgainBtn>Play quiz again</template>
 			</VueQuiz>
 
-		<VueQuiz :options="{ file: 'quiz2.json', nextButton: true, revealAnswer: true, timedQuiz: true }" />
+		<VueQuiz :options="{ file: '../quizzes/quiz2.json', nextButton: true, revealAnswer: true, timedQuiz: true }" />
 		</div>
 	</div>
 </template>

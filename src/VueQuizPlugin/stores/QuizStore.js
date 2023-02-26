@@ -47,7 +47,7 @@ export const useQuizStore = (id) => defineStore(id, {
 
 	actions: {
 		async init(options) {
-			await fetch(`/${options.file}`)
+			await fetch(`${options.file}`)
 				.then((response) => response.json())
 				.then((data) => {
 					this.quizData = data;
