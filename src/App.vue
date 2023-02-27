@@ -23,6 +23,10 @@
 
 				<template #nextBtn>Next question</template>
 
+				<template #answerContent="{ slotProps: { answer } }">
+					{{ answer }}
+				</template>
+
 				<template #result="{ slotProps: { type, result } }">
 					<div class="quiz-copy-wrap">
 						<h2 v-if="type==='scored'" class="quiz-slide-title">Congratulations, you scored {{ result.score }} out of {{ result.scoreMax }}!</h2>

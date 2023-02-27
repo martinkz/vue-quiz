@@ -36,7 +36,11 @@
     </section>
 
     <div v-if="store.currentSlideType==='question'" class="quiz-answers-wrap">
-      <QuizQuestionAnswerBtn v-for="(item, idx) in slideData.answers" :key="item" :item="item" :index="idx" />
+      <QuizQuestionAnswerBtn v-for="(item, idx) in slideData.answers" :key="item" :item="item" :index="idx">
+        <template v-for="(slot, index) of Object.keys($slots)" :key="index" #[slot]="answerProps">
+          <slot :name="slot" :answer-props="answerProps.answerData"></slot>
+        </template>
+      </QuizQuestionAnswerBtn>
     </div>
 
     <div v-if="store.currentSlideType==='intro'" class="controls">

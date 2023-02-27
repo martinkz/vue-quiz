@@ -17,7 +17,7 @@
         :slide-data="store.currentQuestionData" 
         class="quiz-slide">
           <template v-for="(slot, index) of Object.keys($slots)" :key="index" #[slot]="slotProps">
-            <slot :name="slot" :slot-props="slotProps.data"></slot>
+            <slot :name="slot" :slot-props="slotProps.data ?? slotProps.answerProps"></slot>
           </template>
         </QuizSlide>
       </Transition>

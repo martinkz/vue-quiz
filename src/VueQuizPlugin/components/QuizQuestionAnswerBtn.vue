@@ -6,7 +6,7 @@
 		:class="`${selectedClass} ${correctClass} ${incorrectClass}`"
 		@click="chooseAnswer(item.result)"
 		>
-		{{ item.answer }}
+		<slot name="answerContent" :answer-data="item">{{ item.answer }}</slot>
 	</button>
 </template>
 
