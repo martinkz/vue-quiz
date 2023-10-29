@@ -1,5 +1,4 @@
 Reasses the aspect-ratio option
-Load json file from local path or url
 Add checkmark / X icons for correct / incorrect answers
 Add real quiz data
 Add directives for options ("src", "nextButton", "timer"="600", "revealAnswer", etc)
